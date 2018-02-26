@@ -34,7 +34,7 @@ import { MouseFollowerContainer } from "_core/components/MouseFollower";
 import { AnalyticsContainer } from "_core/components/Analytics";
 import { KeyboardControlsContainer } from "_core/components/KeyboardControls";
 import styles from "_core/components/App/AppContainer.scss";
-import stylesExtended from "components/App/AppContainer.scss";
+// import stylesExtended from "components/App/AppContainer.scss";
 import displayStyles from "_core/styles/display.scss";
 
 const theme = createMuiTheme({
@@ -123,7 +123,7 @@ export class AppContainer extends Component {
                     <HelpContainer />
                     <MapContainer />
                     <LoadingContainer />
-                    <MapControlsContainer className={stylesExtended.mapControlContainer} />
+                    <MapControlsContainer />
                     <AppBarContainer />
                     <SettingsContainer />
                     <ShareContainer />
@@ -134,7 +134,7 @@ export class AppContainer extends Component {
                     <MouseFollowerContainer />
                     <AnalyticsContainer />
                     <KeyboardControlsContainer />
-                    <CoordinateTracker className={stylesExtended.coordinateTracker} />
+                    <CoordinateTracker />
                 </div>
             </MuiThemeProvider>
         );

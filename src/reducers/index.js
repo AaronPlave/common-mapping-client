@@ -7,7 +7,7 @@
 
 import { combineReducers } from "redux";
 import view from "_core/reducers/view";
-import map from "_core/reducers/map";
+import mapExtended from "reducers/map";
 import settings from "_core/reducers/settings";
 import help from "_core/reducers/help";
 import layerInfo from "_core/reducers/layerInfo";
@@ -20,7 +20,7 @@ import webWorker from "_core/reducers/webWorker";
 
 const rootReducer = combineReducers({
     view,
-    map,
+    map: mapExtended,
     settings,
     help,
     layerInfo,
