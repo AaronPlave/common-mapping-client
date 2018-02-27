@@ -131,4 +131,46 @@ export default class MapWrapperOpenlayers extends CoreMapWrapperOpenlayers {
             return false;
         }
     }
+
+    /**
+     * get the lat-lon corresponding to a given pixel position
+     * within the containing domnode
+     *
+     * @param {array} pixel location in the container [x,y]
+     * @returns {object|boolean} object of position of false if it fails
+     * - lat - {number} latitude of the pixel location
+     * - lon - {number} longitude of the pixel location
+     * - isValid - {boolean} pixel was on the globe
+     * @memberof MapWrapperOpenlayers
+     */
+    getLatLonFromPixelCoordinate(pixel) {
+        try {
+            let coordinate = this.map.getCoordinateFromPixel(pixel);
+            coordinate = Ol_Proj.transform(
+                coordinate,
+                this.map
+                    .getView()
+                    .getProjection()
+                    .getCode(),
+                "EPSG:4326"
+            );
+            let constrainCoordinate = this.mapUtil.constrainCoordinates(coordinate);
+            if (
+                typeof constrainCoordinate[0] !== "undefined" &&
+                typeof constrainCoordinate[1] !== "undefined" &&
+                !isNaN(constrainCoordinate[0]) &&
+                !isNaN(constrainCoordinate[0])
+            ) {
+                return {
+                    lat: constrainCoordinate[0],
+                    lon: constrainCoordinate[1],
+                    isValid: coordinate[1] <= 90 && coordinate[1] >= -90
+                };
+            }
+            return false;
+        } catch (err) {
+            console.warn("Error in MapWrapperOpenlayers.getLatLonFromPixelCoordinate:", err);
+            return false;
+        }
+    }
 }
