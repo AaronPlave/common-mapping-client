@@ -56,6 +56,41 @@ import CoreMapWrapperOpenlayers from "_core/utils/MapWrapperOpenlayers";
  */
 export default class MapWrapperOpenlayers extends CoreMapWrapperOpenlayers {
     /**
+     * creates an openlayers xyz layer source
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @param {object} options raster imagery options for layer from redux state
+     * - url - {string} base url for this layer
+     * - layer - {string} layer identifier
+     * - format - {string} tile resouce format
+     * - requestEncoding - {string} url encoding (REST|KVP)
+     * - matrixSet - {string} matrix set for the tile pyramid
+     * - projection - {string} projection string
+     * - extents - {array} bounding box extents for this layer
+     * - tilePixelRatio - {array} bounding box extents for this layer
+     * - tileGrid - {object} of tiling options
+     *   - origin - {array} lat lon coordinates of layer upper left
+     *   - resolutions - {array} list of tile resolutions
+     *   - matrixIds - {array} identifiers for each zoom level
+     *   - tileSize - {number} size of the tiles
+     * @returns {object} openlayers source object
+     * @memberof MapWrapperOpenlayers
+     */
+    createXYZSource(layer, options) {
+        return new Ol_Source_XYZ({
+            url: options.url,
+            // tilePixelRatio: 2,
+            projection: options.projection,
+            maxZoom: options.tileGrid.maxZoom,
+            minZoom: options.tileGrid.minZoom,
+            tileSize: options.tileGrid.tileSize,
+            transition: appConfig.DEFAULT_TILE_TRANSITION_TIME,
+            crossOrigin: "anonymous",
+            wrapX: true
+        });
+    }
+
+    /**
      * Bring layer into view
      *
      * @param {ImmutableJS.Map} layer layer object from map state in redux
