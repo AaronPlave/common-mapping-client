@@ -3,7 +3,7 @@
         "id": "VIIRS_SNPP_CorrectedReflectance_TrueColor",
         "title": "True Color",
         "type": "data",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "isDefault": true,
         "wmtsOptions": {
             "urlFunctions": {
@@ -20,7 +20,7 @@
         "id": "AMSR2_Sea_Ice_Brightness_Temp_6km_89H",
         "title": "Sea Ice Extent",
         "type": "data",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "min": 80,
         "max": 320,
         "units": "°K",
@@ -43,7 +43,7 @@
         "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
         "title": "Sea Surface Temperature",
         "type": "data",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "min": 2.0,
         "max": 32.0,
         "units": "˚C",
@@ -66,7 +66,7 @@
         "id": "MODIS_Terra_Brightness_Temp_Band31_Day",
         "title": "Brightness Temperature",
         "type": "data",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "min": 180.0,
         "max": 340.0,
         "units": "˚K",
@@ -113,13 +113,13 @@
         "id": "Reference_Labels",
         "title": "Reference Labels",
         "type": "reference",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "updateParameters": { "time": false }
     }, {
         "id": "Reference_Features",
         "title": "Reference Features",
         "type": "reference",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "updateParameters": { "time": false }
     }, {
         "id": "ESRI_World_Imagery",
@@ -150,21 +150,21 @@
         "title": "Blue Marble, Shaded Relief w/Bathymetry",
         "type": "basemap",
         "thumbnailImage": "img/BlueMarble_ShadedRelief_Bathymetry.jpeg",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "updateParameters": { "time": false }
     }, {
         "id": "OSM_Land_Water_Map",
         "title": "Land/Water Map (data from OSM)",
         "type": "basemap",
         "thumbnailImage": "img/OSM_Land_Water_Map.png",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "updateParameters": { "time": false }
     }, {
         "id": "ASTER_GDEM_Color_Shaded_Relief",
         "title": "Digital Elevation Map (Color Shaded Relief)",
         "type": "basemap",
         "thumbnailImage": "img/ASTER_GDEM_Color_Shaded_Relief.jpeg",
-        "handleAs": "GIBS_raster",
+        "handleAs": "xyz_raster",
         "updateParameters": { "time": false }
     }]
 }
