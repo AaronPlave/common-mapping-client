@@ -76,4 +76,59 @@ export default class MapWrapperOpenlayers extends CoreMapWrapperOpenlayers {
             return false;
         }
     }
+
+    /**
+     * set the view bounding box extent of the map
+     *
+     * @param {array} extent [minX, minY, maxX, maxY] of the desired extent
+     * @returns {boolean} true if it succeeds
+     * @memberof MapWrapperOpenlayers
+     */
+    setExtent(extent) {
+        try {
+            if (extent) {
+                extent = Ol_Proj.transformExtent(
+                    extent,
+                    "EPSG:4326",
+                    this.map
+                        .getView()
+                        .getProjection()
+                        .getCode()
+                );
+                let mapSize = this.map.getSize() || [];
+                this.map.getView().fit(extent, {
+                    size: mapSize,
+                    constrainResolution: false
+                });
+                return true;
+            }
+            return false;
+        } catch (err) {
+            console.warn("Error in MapWrapperOpenlayers.setExtent:", err);
+            return false;
+        }
+    }
+
+    /**
+     * get the current view bounding box of the map
+     *
+     * @returns {array} [minX, minY, maxX, maxY] of the current extent
+     * @memberof MapWrapperOpenlayers
+     */
+    getExtent() {
+        try {
+            let extent = this.map.getView().calculateExtent(this.map.getSize());
+            return Ol_Proj.transformExtent(
+                extent,
+                this.map
+                    .getView()
+                    .getProjection()
+                    .getCode(),
+                "EPSG:4326"
+            );
+        } catch (err) {
+            console.warn("Error in MapWrapperOpenlayers.getExtent:", err);
+            return false;
+        }
+    }
 }
