@@ -185,7 +185,8 @@
             "handleAs": "xyz_raster",
             "updateParameters": { "time": false },
             "wmtsOptions": {
-                "url": "https://a.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
+                "url":
+                    "https://a.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
                 "projection": "EPSG:3857",
                 "tileGrid": {
                     "minZoom": 0,
@@ -202,12 +203,13 @@
             "handleAs": "xyz_raster",
             "updateParameters": { "time": false },
             "wmtsOptions": {
-                "url": "https://a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
+                "url":
+                    "https://a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
                 "projection": "EPSG:3857",
                 "layer": "Mapbox_Satellite",
                 "tileGrid": {
                     "minZoom": 0,
-                    "maxZoom": 18,
+                    "maxZoom": 19,
                     "tileSize": 256
                 }
             }
@@ -220,12 +222,14 @@
             "handleAs": "xyz_raster",
             "updateParameters": { "time": false },
             "wmtsOptions": {
-                "url": "https://a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
+                "url":
+                    "https://a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
                 "projection": "EPSG:3857",
                 "layer": "Mapbox_Satellite2",
+                "extent": [-180.0, -85.0, 180.0, 85.0],
                 "tileGrid": {
                     "minZoom": 0,
-                    "maxZoom": 18
+                    "maxZoom": 19
                 }
             }
         },
