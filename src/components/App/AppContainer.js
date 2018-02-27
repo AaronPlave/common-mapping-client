@@ -33,6 +33,8 @@ import { LayerMenuContainer } from "components/LayerMenu";
 import { MouseFollowerContainer } from "_core/components/MouseFollower";
 import { AnalyticsContainer } from "_core/components/Analytics";
 import { KeyboardControlsContainer } from "_core/components/KeyboardControls";
+import { TimelineContainer } from "_core/components/Timeline";
+import { DatePickerContainer } from "_core/components/DatePicker";
 import styles from "_core/components/App/AppContainer.scss";
 // import stylesExtended from "components/App/AppContainer.scss";
 import displayStyles from "_core/styles/display.scss";
@@ -120,6 +122,7 @@ export class AppContainer extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <div className={containerClasses}>
+                    <DatePickerContainer />
                     <HelpContainer />
                     <MapContainer />
                     <LoadingContainer />
@@ -129,6 +132,7 @@ export class AppContainer extends Component {
                     <ShareContainer />
                     <LayerInfoContainer />
                     <LayerMenuContainer />
+                    <TimelineContainer />
                     <AlertsContainer />
                     <MapContextMenu />
                     <MouseFollowerContainer />

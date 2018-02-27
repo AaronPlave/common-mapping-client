@@ -11,8 +11,6 @@ import MapReducerExtended from "reducers/reducerFunctions/MapReducer";
 
 export default function mapExtended(state = mapState, action, opt_reducer = MapReducerExtended) {
     switch (action.type) {
-        case actionTypes.ADD_MEASUREMENT_LABEL_TO_GEOMETRY:
-            return opt_reducer.addMeasurementLabelToGeometry(state, action);
         case actionTypesDemo.ZOOM_TO_LAYER:
             return opt_reducer.zoomToLayer(state, action);
         default:

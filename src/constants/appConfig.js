@@ -17,7 +17,7 @@ const OPS_CONFIG = Immutable.fromJS(window.APPLICATION_CONFIG);
 
 // define your overrides for Core config here
 const APP_CONFIG = Immutable.fromJS({
-    APP_TITLE: "Common Mapping Client Walkthrough",
+    APP_TITLE: "Common Mapping Client - Walkthrough",
     DEFAULT_PROJECTION: appStringsCore.PROJECTIONS.webmercator,
     URLS: {
         layerConfig: [
@@ -34,23 +34,8 @@ const APP_CONFIG = Immutable.fromJS({
     },
     DEFAULT_MAP_EXTENT: [-20037508.34 * 1.5, -20037508.34, 20037508.34 * 1.5, 20037508.34],
     DEFAULT_BBOX_EXTENT: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
-    GIBS_IMAGERY_RESOLUTIONS: [
-        156543.03390625,
-        78271.51696402043,
-        39135.75848201021,
-        19567.879241005106,
-        9783.939620502553,
-        4891.969810251277,
-        2445.9849051256383,
-        1222.9924525628192,
-        611.4962262814096,
-        305.7481131407048,
-        152.8740565703524,
-        76.4370282851762,
-        38.2185141425881,
-        19.10925707129405
-    ],
-    MAX_RESOLUTION: 156543.03390625
+    MAX_RESOLUTION: undefined
+    // MAX_RESOLUTION: 156543.03390625
 });
 
 // define and export the final config
