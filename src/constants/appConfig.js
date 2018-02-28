@@ -33,7 +33,8 @@ const APP_CONFIG = Immutable.fromJS({
         paletteConfig: "default-data/demo-default-data/palettes.json"
     },
     DEFAULT_MAP_EXTENT: [-20026376.39 * 1.5, -20048966.1, 20026376.39 * 1.5, 20048966.1],
-    MAX_RESOLUTION: undefined
+    MAX_RESOLUTION: undefined,
+    MAX_ZOOM: 21
 });
 
 // define and export the final config
