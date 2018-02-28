@@ -5,7 +5,6 @@
             "title": "True Color",
             "type": "data",
             "handleAs": "wmts_raster",
-            "isDefault": true,
             "wmtsOptions": {
                 "urlFunctions": {
                     "openlayers": "kvpTimeParam",
@@ -18,31 +17,6 @@
                 "handleAs": "json"
             },
             "thumbnailImage": "img/VIIRS_SNPP_CorrectedReflectance_TrueColor.png"
-        },
-        {
-            "id": "AMSR2_Sea_Ice_Brightness_Temp_6km_89H",
-            "title": "Sea Ice Extent",
-            "type": "data",
-            "handleAs": "wmts_raster",
-            "min": 80,
-            "max": 320,
-            "units": "°K",
-            "wmtsOptions": {
-                "urlFunctions": {
-                    "openlayers": "kvpTimeParam",
-                    "cesium": "kvpTimeParam"
-                }
-            },
-            "metadata": {
-                "url":
-                    "default-data/_core_default-data/layer-metadata/AMSR2_Sea_Ice_Brightness_Temp_6km_89H.json",
-                "handleAs": "json"
-            },
-            "palette": {
-                "name": "AMSR2_Sea_Ice_Brightness_Temp_6km_89H",
-                "handleAs": "json-relative"
-            },
-            "thumbnailImage": "img/AMSR2_Sea_Ice_Brightness_Temp_6km_89H.png"
         },
         {
             "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
@@ -70,14 +44,37 @@
             "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
         },
         {
-            "id": "MODIS_Terra_Brightness_Temp_Band31_Day",
-            "title": "Brightness Temperature",
+            "id": "AMSR2_Surface_Precipitation_Rate_Day",
+            "title": "Surface Precipitation Rate (Day, AMSR2, GCOM-W1)",
             "type": "data",
-            "handleAs": "wmts_raster",
-            "min": 180.0,
-            "max": 340.0,
-            "units": "˚K",
+            "handleAs": "GIBS_raster",
+            "min": 0,
+            "max": 25,
+            "units": "mm/hr",
             "wmtsOptions": {
+                "matrixSet": "2km",
+                "url": "https://map1a.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi",
+                "projection": "EPSG:4326",
+                "layer": "AMSR2_Surface_Precipitation_Rate_Day",
+                "tileGrid": {
+                    "extents": [-180, -90, 180, 90],
+                    "origin": [-180, 90],
+                    "resolutions": [
+                        0.5625,
+                        0.28125,
+                        0.140625,
+                        0.0703125,
+                        0.03515625,
+                        0.017578125,
+                        0.0087890625,
+                        0.00439453125,
+                        0.002197265625
+                    ],
+                    "matrixIds": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                    "minZoom": 1,
+                    "maxZoom": 16,
+                    "tileSize": 512
+                },
                 "urlFunctions": {
                     "openlayers": "kvpTimeParam",
                     "cesium": "kvpTimeParam"
@@ -85,54 +82,75 @@
             },
             "metadata": {
                 "url":
-                    "default-data/_core_default-data/layer-metadata/MODIS_Terra_Brightness_Temp_Band31_Day.json",
+                    "default-data/_core_default-data/layer-metadata/GHRSST_L4_G1SST_Sea_Surface_Temperature.json",
                 "handleAs": "json"
             },
             "palette": {
-                "name": "purple_2",
+                "name": "AMSR2_Surface_Precipitation_Rate",
                 "handleAs": "json-relative"
             },
-            "thumbnailImage": "img/MODIS_Terra_Brightness_Temp_Band31_Day.png"
+            "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
         },
         {
-            "id": "us_state_outline_topojson",
-            "title": "US State Outline",
+            "id": "AMSR2_Surface_Precipitation_Rate_Night",
+            "title": "Surface Precipitation Rate (Night, AMSR2, GCOM-W1)",
             "type": "data",
-            "handleAs": "vector_topojson",
-            "updateParameters": { "time": false },
-            "url": "default-data/_core_default-data/ne_10m_us_states.topojson",
+            "handleAs": "GIBS_raster",
+            "min": 0,
+            "max": 25,
+            "units": "mm/hr",
+            "wmtsOptions": {
+                "matrixSet": "2km",
+                "url": "https://map1a.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi",
+                "projection": "EPSG:4326",
+                "layer": "AMSR2_Surface_Precipitation_Rate_Night",
+                "tileGrid": {
+                    "extents": [-180, -90, 180, 90],
+                    "origin": [-180, 90],
+                    "resolutions": [
+                        0.5625,
+                        0.28125,
+                        0.140625,
+                        0.0703125,
+                        0.03515625,
+                        0.017578125,
+                        0.0087890625,
+                        0.00439453125,
+                        0.002197265625
+                    ],
+                    "matrixIds": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                    "minZoom": 1,
+                    "maxZoom": 16,
+                    "tileSize": 512
+                },
+                "urlFunctions": {
+                    "openlayers": "kvpTimeParam",
+                    "cesium": "kvpTimeParam"
+                }
+            },
             "metadata": {
                 "url":
-                    "default-data/_core_default-data/layer-metadata/us_state_outline_topojson.json",
+                    "default-data/_core_default-data/layer-metadata/GHRSST_L4_G1SST_Sea_Surface_Temperature.json",
                 "handleAs": "json"
             },
-            "thumbnailImage": "img/us_state_outline_topojson.png"
-        },
-        {
-            "id": "flight_paths_kml",
-            "title": "Flight Paths",
-            "type": "data",
-            "handleAs": "vector_kml",
-            "updateParameters": { "time": false },
-            "url": "default-data/_core_default-data/openflights-sample.kml",
-            "metadata": {
-                "url": "default-data/_core_default-data/layer-metadata/flight_paths_kml.json",
-                "handleAs": "json"
+            "palette": {
+                "name": "AMSR2_Surface_Precipitation_Rate",
+                "handleAs": "json-relative"
             },
-            "thumbnailImage": "img/flight_paths_kml.png"
+            "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
         },
         {
             "id": "Reference_Labels",
             "title": "Reference Labels",
             "type": "reference",
-            "handleAs": "wmts_raster",
+            "handleAs": "GIBS_raster",
             "updateParameters": { "time": false }
         },
         {
             "id": "Reference_Features",
             "title": "Reference Features",
             "type": "reference",
-            "handleAs": "wmts_raster",
+            "handleAs": "GIBS_raster",
             "updateParameters": { "time": false }
         },
         {
@@ -140,7 +158,6 @@
             "title": "ESRI High Resolution World Imagery",
             "type": "basemap",
             "thumbnailImage": "img/ESRI_World_Imagery.jpeg",
-            "isDefault": true,
             "handleAs": "xyz_raster",
             "updateParameters": { "time": false },
             "wmtsOptions": {
@@ -178,10 +195,11 @@
             "updateParameters": { "time": false }
         },
         {
-            "id": "Mapbox Streets-Satellite",
-            "title": "Mapbox_Streets_Satellite",
+            "id": "Mapbox_Streets_Satellite",
+            "title": "Mapbox Streets-Satellite (Retina)",
             "type": "basemap",
-            "thumbnailImage": "img/OSM_Land_Water_Map.png",
+            "thumbnailImage":
+                "https://a.tiles.mapbox.com/v4/mapbox.streets-satellite/2/1/2@2x.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
             "handleAs": "xyz_raster",
             "updateParameters": { "time": false },
             "wmtsOptions": {
@@ -196,17 +214,18 @@
             }
         },
         {
-            "id": "Mapbox Satellite",
-            "title": "Mapbox_Satellite",
+            "id": "Mapbox_Satellite_Retina",
+            "title": "Mapbox Satellite (Retina)",
             "type": "basemap",
-            "thumbnailImage": "img/OSM_Land_Water_Map.png",
+            "thumbnailImage":
+                "https://a.tiles.mapbox.com/v4/mapbox.satellite/2/1/2@2x.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
             "handleAs": "xyz_raster",
             "updateParameters": { "time": false },
             "wmtsOptions": {
                 "url":
                     "https://a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
                 "projection": "EPSG:3857",
-                "layer": "Mapbox_Satellite",
+                "layer": "Mapbox_Satellite_Retina",
                 "tileGrid": {
                     "minZoom": 0,
                     "maxZoom": 19,
@@ -215,24 +234,26 @@
             }
         },
         {
-            "id": "Mapbox Satellite2",
-            "title": "Mapbox_Satellite2",
+            "id": "Mapbox_Satellite",
+            "title": "Mapbox Satellite",
             "type": "basemap",
-            "thumbnailImage": "img/OSM_Land_Water_Map.png",
+            "isDefault": true,
+            "thumbnailImage":
+                "https://a.tiles.mapbox.com/v4/mapbox.satellite/2/1/2.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
             "handleAs": "xyz_raster",
             "updateParameters": { "time": false },
             "wmtsOptions": {
                 "url":
                     "https://a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWFyb25wbGF2ZSIsImEiOiJjamU0eDVqYnAxYTh0MzBycWl2dnpxdWFrIn0.JwpMMB2c-TpLxC7DXZzmUg",
                 "projection": "EPSG:3857",
-                "layer": "Mapbox_Satellite2",
-                "extent": [-180.0, -85.0, 180.0, 85.0],
+                "layer": "Mapbox_Satellite",
                 "tileGrid": {
                     "minZoom": 0,
                     "maxZoom": 19
                 }
             }
         },
+
         {
             "id": "ASTER_GDEM_Color_Shaded_Relief",
             "title": "Digital Elevation Map (Color Shaded Relief)",
