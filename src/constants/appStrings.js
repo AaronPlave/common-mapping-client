@@ -5,3 +5,5 @@ export const ALERTS = {
         severity: 3
     }
 };
+
+export const VECTOR_STYLE_STORM = "storm";

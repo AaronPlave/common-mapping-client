@@ -37,15 +37,16 @@ import Ol_Format_TopoJSON from "ol/format/topojson";
 import Ol_Format_KML from "ol/format/kml";
 import Ol_Easing from "ol/easing";
 import proj4js from "proj4";
-import * as appStrings from "_core/constants/appStrings";
+import * as appStringsCore from "_core/constants/appStrings";
+import * as appStrings from "constants/appStrings";
 import appConfig from "constants/appConfig";
 import MapWrapper from "_core/utils/MapWrapper";
 import MiscUtil from "_core/utils/MiscUtil";
-import MapUtil from "_core/utils/MapUtil";
+import MapUtil from "utils/MapUtil";
 import TileHandler from "_core/utils/TileHandler";
 import Cache from "_core/utils/Cache";
 import tooltipStyles from "_core/components/Map/MapTooltip.scss";
-import CoreMapWrapperOpenlayers from "_core/utils/MapWrapperOpenlayers";
+import MapWrapperOpenlayersCore from "_core/utils/MapWrapperOpenlayers";
 
 /**
  * Extension of Openlayers Map Wrapper
@@ -54,7 +55,19 @@ import CoreMapWrapperOpenlayers from "_core/utils/MapWrapperOpenlayers";
  * @class MapWrapperOpenlayers
  * @extends {MapWrapperOpenlayers}
  */
-export default class MapWrapperOpenlayers extends CoreMapWrapperOpenlayers {
+export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
+    /**
+     * Initialize static class references for this instance
+     *
+     * @param {string|domnode} container the container to render this map into
+     * @param {object} options view options for constructing this map wrapper (usually map state from redux)
+     * @memberof MapWrapperOpenlayers
+     */
+    initStaticClasses(container, options) {
+        MapWrapperOpenlayersCore.prototype.initStaticClasses.call(this, container, options);
+        this.mapUtil = MapUtil;
+    }
+
     /**
      * creates an openlayers xyz layer source
      *
@@ -207,5 +220,135 @@ export default class MapWrapperOpenlayers extends CoreMapWrapperOpenlayers {
             console.warn("Error in MapWrapperOpenlayers.getLatLonFromPixelCoordinate:", err);
             return false;
         }
+    }
+
+    /**
+     * create an openlayers vector layer
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @param {boolean} [fromCache=true] true if the layer may be pulled from the cache
+     * @returns {object} openlayers vector layer
+     * @memberof MapWrapperOpenlayers
+     */
+    createVectorLayer(layer, fromCache = true) {
+        if (typeof layer.get("vectorStyle") !== "undefined") {
+            try {
+                let layerSource = this.createLayerSource(layer, {
+                    url: layer.get("url")
+                });
+                if (layer.get("clusterVector")) {
+                    layerSource = new Ol_Source_Cluster({ source: layerSource });
+                }
+
+                return new Ol_Layer_Vector({
+                    source: layerSource,
+                    opacity: layer.get("opacity"),
+                    visible: layer.get("isActive"),
+                    style: this.createVectorLayerStyle(layer),
+                    extent: appConfig.DEFAULT_MAP_EXTENT
+                });
+            } catch (err) {
+                console.warn("Error in MapWrapperOpenlayers.createVectorLayer:", err);
+                return false;
+            }
+        } else {
+            return MapWrapperOpenlayersCore.prototype.createVectorLayer.call(
+                this,
+                layer,
+                fromCache
+            );
+        }
+    }
+
+    /**
+     * creates an openlayers kml vector layer source
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @param {object} options raster imagery options for layer from redux state
+     * - url - {string} base url for this layer
+     * @returns {object} openlayers source object
+     * @memberof MapWrapperOpenlayers
+     */
+    createVectorKMLSource(layer, options) {
+        // customize the layer url if needed
+        if (
+            typeof options.url !== "undefined" &&
+            typeof layer.getIn(["urlFunctions", appStringsCore.MAP_LIB_2D]) !== "undefined"
+        ) {
+            let urlFunction = this.tileHandler.getUrlFunction(
+                layer.getIn(["urlFunctions", appStringsCore.MAP_LIB_2D])
+            );
+            options.url = urlFunction({
+                layer: layer,
+                url: options.url
+            });
+        }
+
+        return new Ol_Source_Vector({
+            url: options.url,
+            format: new Ol_Format_KML({
+                extractStyles: typeof layer.get("vectorStyle") === "undefined"
+            })
+        });
+    }
+
+    /**
+     * creates a vector styling function for a layer
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @returns {function} openlayers style function object
+     * @memberof MapWrapperOpenlayers
+     */
+    createVectorLayerStyle(layer) {
+        switch (layer.get("vectorStyle")) {
+            case appStrings.VECTOR_STYLE_STORM:
+                return this.createVectorLayerStyleStorm(layer);
+            default:
+                return undefined;
+        }
+    }
+
+    /**
+     * creates a vector styling function for a storm track
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @returns {function} openlayers style function object
+     * @memberof MapWrapperOpenlayers
+     */
+    createVectorLayerStyleStorm(layer) {
+        return (feature, resolution) => {
+            let nodeTime = feature.get("dtg");
+            let time = moment(nodeTime, "YYYY MMM DD HHmm");
+            let timeStr = time.format("MMM DD · HH:mm UTC");
+            let color = this.mapUtil.getStormColor(parseInt(feature.get("intensity")));
+
+            let textStyle = new Ol_Style_Text({
+                font: "12px Roboto, sans-serif",
+                overflow: true,
+                offsetX: 10,
+                textAlign: "left",
+                text: timeStr,
+                fill: new Ol_Style_Fill({
+                    color: "#000"
+                }),
+                stroke: new Ol_Style_Stroke({
+                    color: "#fff",
+                    width: 3
+                })
+            });
+
+            let pointStyle = new Ol_Style_Circle({
+                fill: new Ol_Style_Fill({ color: color }),
+                stroke: new Ol_Style_Stroke({
+                    color: "#000",
+                    width: 1.25
+                }),
+                radius: 6
+            });
+
+            return new Ol_Style({
+                image: pointStyle
+            });
+        };
     }
 }

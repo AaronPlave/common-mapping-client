@@ -92,6 +92,20 @@
             "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
         },
         {
+        "id": "storm_track_hurricane_maria",
+        "title": "Hurricane Maria - Storm Track",
+        "type": "data",
+        "handleAs": "vector_kml",
+        "vectorStyle": "storm",
+        "updateParameters": { "time": false },
+        "url": "default-data/demo-default-data/al152017_best_track_Maria.kml",
+        "metadata": {
+            "url": "default-data/_core_default-data/layer-metadata/flight_paths_kml.json",
+            "handleAs": "json"
+        },
+        "thumbnailImage": "img/flight_paths_kml.png"
+    },
+        {
             "id": "AMSR2_Surface_Precipitation_Rate_Night",
             "title": "Surface Precipitation Rate (Night, AMSR2, GCOM-W1)",
             "type": "data",
