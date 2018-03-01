@@ -44,7 +44,22 @@
             "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
         },
         {
-            "id": "AMSR2_Surface_Precipitation_Rate_Day",
+            "id": "storm_track_hurricane_maria",
+            "title": "Hurricane Maria - Storm Track",
+            "type": "data",
+            "handleAs": "vector_kml",
+            "vectorStyle": "storm",
+            "updateParameters": { "time": false },
+            "url": "default-data/demo-default-data/al152017_best_track_Maria.kml",
+            "timeFormat": "YYYY MMM DD HHmm",
+            "metadata": {
+                "url": "default-data/_core_default-data/layer-metadata/flight_paths_kml.json",
+                "handleAs": "json"
+            },
+            "thumbnailImage": "img/flight_paths_kml.png"
+        },
+        {
+            "id": "AMSR2_Surface_Precipitation_Rate_Day_EPSG4326",
             "title": "Surface Precipitation Rate (Day, AMSR2, GCOM-W1)",
             "type": "data",
             "handleAs": "GIBS_raster",
@@ -59,20 +74,7 @@
                 "tileGrid": {
                     "extents": [-180, -90, 180, 90],
                     "origin": [-180, 90],
-                    "resolutions": [
-                        0.5625,
-                        0.28125,
-                        0.140625,
-                        0.0703125,
-                        0.03515625,
-                        0.017578125,
-                        0.0087890625,
-                        0.00439453125,
-                        0.002197265625
-                    ],
-                    "matrixIds": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                    "minZoom": 1,
-                    "maxZoom": 16,
+                    "matrixIds": [0, 1, 2, 3, 4, 5],
                     "tileSize": 512
                 },
                 "urlFunctions": {
@@ -92,21 +94,7 @@
             "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
         },
         {
-        "id": "storm_track_hurricane_maria",
-        "title": "Hurricane Maria - Storm Track",
-        "type": "data",
-        "handleAs": "vector_kml",
-        "vectorStyle": "storm",
-        "updateParameters": { "time": false },
-        "url": "default-data/demo-default-data/al152017_best_track_Maria.kml",
-        "metadata": {
-            "url": "default-data/_core_default-data/layer-metadata/flight_paths_kml.json",
-            "handleAs": "json"
-        },
-        "thumbnailImage": "img/flight_paths_kml.png"
-    },
-        {
-            "id": "AMSR2_Surface_Precipitation_Rate_Night",
+            "id": "AMSR2_Surface_Precipitation_Rate_Night_EPSG4326",
             "title": "Surface Precipitation Rate (Night, AMSR2, GCOM-W1)",
             "type": "data",
             "handleAs": "GIBS_raster",
@@ -118,23 +106,12 @@
                 "url": "https://map1a.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi",
                 "projection": "EPSG:4326",
                 "layer": "AMSR2_Surface_Precipitation_Rate_Night",
+                "requestEncoding": "KVP",
+                "format": "image/png",
+                "extents": [-180, -90, 180, 90],
                 "tileGrid": {
-                    "extents": [-180, -90, 180, 90],
                     "origin": [-180, 90],
-                    "resolutions": [
-                        0.5625,
-                        0.28125,
-                        0.140625,
-                        0.0703125,
-                        0.03515625,
-                        0.017578125,
-                        0.0087890625,
-                        0.00439453125,
-                        0.002197265625
-                    ],
-                    "matrixIds": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                    "minZoom": 1,
-                    "maxZoom": 16,
+                    "matrixIds": [0, 1, 2, 3, 4, 5],
                     "tileSize": 512
                 },
                 "urlFunctions": {

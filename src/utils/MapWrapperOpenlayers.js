@@ -319,7 +319,7 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
     createVectorLayerStyleStorm(layer) {
         return (feature, resolution) => {
             let nodeTime = feature.get("dtg");
-            let time = moment(nodeTime, appStrings.STORM_TRACK_TIME_FORMAT);
+            let time = moment(nodeTime, layer.get("timeFormat"));
             let timeStr = time.format("MMM DD · HH:mm UTC");
             let color = this.mapUtil.getStormColor(parseInt(feature.get("intensity")));
 

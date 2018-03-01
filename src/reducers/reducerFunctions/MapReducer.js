@@ -114,7 +114,10 @@ export default class MapReducerExtended extends MapReducerCore {
                         // update the date
                         let dateStr = data.getIn([0, "properties", "dtg"]);
                         if (typeof dateStr !== "undefined") {
-                            let date = moment(dateStr, appStrings.STORM_TRACK_TIME_FORMAT).toDate();
+                            let date = moment(
+                                dateStr,
+                                data.getIn([0, "layer", "timeFormat"])
+                            ).toDate();
                             state = MapReducerCore.setMapDate(state, { date: date });
                         }
                         return false;

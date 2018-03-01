@@ -10,9 +10,10 @@ import styles from "components/MouseFollower/DataDisplay.scss";
 export class DataDisplay extends Component {
     render() {
         let dataProps = this.props.data.get("properties");
-        let timeStr = moment(dataProps.get("dtg"), appStrings.STORM_TRACK_TIME_FORMAT).format(
-            "MMM DD · HH:mm UTC"
-        );
+        let timeStr = moment(
+            dataProps.get("dtg"),
+            this.props.data.getIn(["layer", "timeFormat"])
+        ).format("MMM DD · HH:mm UTC");
         let color = MapUtil.getStormColor(dataProps.get("intensity"));
 
         return (
