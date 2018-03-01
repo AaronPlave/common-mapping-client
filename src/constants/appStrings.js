@@ -7,3 +7,13 @@ export const ALERTS = {
 };
 
 export const VECTOR_STYLE_STORM = "storm";
+
+export const STORM_COLORS = {
+    tropical_depression: "#1976d2",
+    tropical_storm: "#26c6da",
+    cat_1: "#ffee58",
+    cat_2: "#ffca28",
+    cat_3: "#ffb300",
+    cat_4: "#fb8c00",
+    cat_5: "#e53935"
+};
