@@ -49,12 +49,19 @@
             "type": "data",
             "handleAs": "vector_kml",
             "vectorStyle": "storm",
+            "units": "knots",
             "updateParameters": { "time": false },
             "url": "default-data/demo-default-data/al152017_best_track_Maria.kml",
             "timeFormat": "YYYY MMM DD HHmm",
             "metadata": {
                 "url": "default-data/_core_default-data/layer-metadata/flight_paths_kml.json",
                 "handleAs": "json"
+            },
+            "palette": {
+                "name": "storm_track",
+                "min": "<=33",
+                "max": ">=136",
+                "handleAs": "json-fixed"
             },
             "thumbnailImage": "img/flight_paths_kml.png"
         },
@@ -72,8 +79,6 @@
                 "projection": "EPSG:4326",
                 "layer": "AMSR2_Surface_Precipitation_Rate_Day",
                 "tileGrid": {
-                    "extents": [-180, -90, 180, 90],
-                    "origin": [-180, 90],
                     "matrixIds": [0, 1, 2, 3, 4, 5],
                     "tileSize": 512
                 },
@@ -108,9 +113,7 @@
                 "layer": "AMSR2_Surface_Precipitation_Rate_Night",
                 "requestEncoding": "KVP",
                 "format": "image/png",
-                "extents": [-180, -90, 180, 90],
                 "tileGrid": {
-                    "origin": [-180, 90],
                     "matrixIds": [0, 1, 2, 3, 4, 5],
                     "tileSize": 512
                 },
