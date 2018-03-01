@@ -36,18 +36,18 @@ import { KeyboardControlsContainer } from "_core/components/KeyboardControls";
 import { TimelineContainer } from "_core/components/Timeline";
 import { DatePickerContainer } from "_core/components/DatePicker";
 import styles from "_core/components/App/AppContainer.scss";
-// import stylesExtended from "components/App/AppContainer.scss";
 import displayStyles from "_core/styles/display.scss";
 
+/* Color palette created with https://material.io/color/#!/?view.left=1&view.right=0&primary.color=3D5AFE */
 const theme = createMuiTheme({
     typography: {
         htmlFontSize: 10
     },
     palette: {
         primary: {
-            main: "#dd2c00",
-            light: "#ff6434",
-            dark: "#a30000",
+            main: "#3d5afe",
+            light: "#8187ff",
+            dark: "#0031ca",
             contrastText: "#fff"
         }
     }
