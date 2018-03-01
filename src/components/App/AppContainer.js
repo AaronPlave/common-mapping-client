@@ -30,7 +30,7 @@ import { HelpContainer } from "components/Help";
 import { AlertsContainer } from "_core/components/Alerts";
 import { AppBarContainer } from "_core/components/AppBar";
 import { LayerMenuContainer } from "components/LayerMenu";
-import { MouseFollowerContainer } from "_core/components/MouseFollower";
+import { MouseFollowerContainer } from "components/MouseFollower";
 import { AnalyticsContainer } from "_core/components/Analytics";
 import { KeyboardControlsContainer } from "_core/components/KeyboardControls";
 import { TimelineContainer } from "_core/components/Timeline";

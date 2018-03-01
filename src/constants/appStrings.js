@@ -7,3 +7,5 @@ export const ALERTS = {
 };
 
 export const VECTOR_STYLE_STORM = "storm";
+
+export const STORM_TRACK_TIME_FORMAT = "YYYY MMM DD HHmm";

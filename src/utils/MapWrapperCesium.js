@@ -69,6 +69,7 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
                         let feature = features[i];
                         feature.billboard = undefined;
                         feature.label = undefined;
+                        feature._layerId = layer.get("id");
                         if (feature.kml.extendedData) {
                             let color = this.mapUtil.getStormColor(
                                 parseInt(feature.kml.extendedData.intensity.value)
@@ -85,6 +86,55 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
             return layerSource;
         } catch (err) {
             console.warn("Error in MapWrapperCesium.createVectorLayer:", err);
+        }
+    }
+
+    /**
+     * retrieves an array of feature data at a given coordinate/pixel
+     *
+     * @param {array} coords [lon,lat] map coordinates
+     * @param {array} pixel  [x,y] screen coordinates
+     * @returns {array} feature data objects
+     * - layerId - {string} id of the layer this feature belongs to
+     * - properties - {object} data properties of the feature (intensity, minSeaLevelPres, dtg)
+     * - coords - {array} [lon,lat] map coordinates of the feature
+     * @memberof MapWrapperCesium
+     */
+    getDataAtPoint(coords, pixel) {
+        try {
+            let data = []; // the collection of pixel data to return
+
+            let pickedObjects = this.map.scene.drillPick(
+                new this.cesium.Cartesian2(pixel[0], pixel[1]),
+                1
+            );
+            for (let i = 0; i < pickedObjects.length; ++i) {
+                let entity = pickedObjects[i];
+                if (entity.id.kml && entity.id.kml.extendedData) {
+                    data.push({
+                        layerId: entity.id._layerId,
+                        properties: {
+                            intensity: parseInt(entity.id.kml.extendedData.intensity.value),
+                            minSeaLevelPres: parseInt(
+                                entity.id.kml.extendedData.minSeaLevelPres.value
+                            ),
+                            dtg: entity.id.kml.extendedData.dtg.value
+                        },
+                        coords: [
+                            parseFloat(entity.id.kml.extendedData.lon.value),
+                            parseFloat(entity.id.kml.extendedData.lat.value)
+                        ]
+                    });
+                }
+            }
+
+            // pull just one feature to display
+            return data.slice(0, 1);
+
+            // return data;
+        } catch (err) {
+            console.warn("Error in MapWrapperCesium.getDataAtPoint:", err);
+            return [];
         }
     }
 }
