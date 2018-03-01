@@ -121,16 +121,6 @@ export default class MapReducerExtended extends MapReducerCore {
                     } else {
                         pixelCoordinate = pixelCoordinate.set("isValid", false);
                     }
-
-                    // if (coords) {
-                    //     pixelCoordinate = pixelCoordinate
-                    //         .set("lat", coords.lat)
-                    //         .set("lon", coords.lon)
-                    //         .set("x", pixel[0])
-                    //         .set("y", pixel[1])
-                    //         .set("isValid", coords.isValid);
-                    //     return false;
-                    // }
                 }
             }
             return true;
