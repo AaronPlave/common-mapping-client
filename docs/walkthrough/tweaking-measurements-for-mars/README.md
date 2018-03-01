@@ -1,0 +1,5 @@
+# Tweaking Measurements for Mars
+
+One other modification we want to make to a CMC Core functionality is related to measurements. CMC Core measurement capabilities (accessed by right clicking on the map or clicking on the wrench map button) use the [TurfJS](http://turfjs.org/) library to calculate distances along a great circle route (computed using [arc.js](https://github.com/springmeyer/arc.js)). Since TurfJS computes distances based on an internal Earth radius value we need to do an approximate translation to Mars distance by using Mars radius.
+
+- override map reducer `measureGeometry` to account for Mars radius, note how this is a rough calculation based off an approximate size and that it doesn't take into account things like terrain, see MarsTrek for a more accurate distance calculation.
