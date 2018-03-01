@@ -38,13 +38,16 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
      */
     zoomToLayer(layer) {
         try {
-            this.map.camera.flyTo({
-                destination: this.cesium.Rectangle.fromDegrees(
-                    ...layer.getIn(["wmtsOptions", "extents"])
-                ),
-                duration: 1
-            });
-            return true;
+            let mapLayers = this.getMapLayers(layer.get("handleAs"));
+            let mapLayer = this.findLayerInMapLayers(mapLayers, layer);
+            if (mapLayer) {
+                this.map.flyTo(mapLayer, {
+                    duration: 1,
+                    offset: new this.cesium.HeadingPitchRange(0, -90, 0)
+                });
+                return true;
+            }
+            return false;
         } catch (err) {
             console.warn("Error in MapWrapperCesiumExtended.zoomToLayer:", err);
             return false;

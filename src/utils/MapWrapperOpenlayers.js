@@ -113,13 +113,19 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
      */
     zoomToLayer(layer) {
         try {
-            let mapSize = this.map.getSize() || [];
-            this.map.getView().fit(layer.getIn(["wmtsOptions", "extents"]).toJS(), {
-                size: mapSize,
-                duration: 1000,
-                constrainResolution: false
-            });
-            return true;
+            let mapLayers = this.map.getLayers().getArray();
+            let mapLayer = this.miscUtil.findObjectInArray(mapLayers, "_layerId", layer.get("id"));
+            if (mapLayer) {
+                let mapSize = this.map.getSize() || [];
+                this.map.getView().fit(mapLayer.getExtent() || mapLayer.getSource().getExtent(), {
+                    size: mapSize,
+                    duration: 1000,
+                    padding: [100, 100, 100, 100],
+                    constrainResolution: false
+                });
+                return true;
+            }
+            return false;
         } catch (err) {
             console.warn("Error in MapWrapperOpenlayers.zoomToLayer:", err);
             return false;
@@ -245,8 +251,7 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
                     source: layerSource,
                     opacity: layer.get("opacity"),
                     visible: layer.get("isActive"),
-                    style: this.createVectorLayerStyle(layer),
-                    extent: appConfig.DEFAULT_MAP_EXTENT
+                    style: this.createVectorLayerStyle(layer)
                 });
             } catch (err) {
                 console.warn("Error in MapWrapperOpenlayers.createVectorLayer:", err);
