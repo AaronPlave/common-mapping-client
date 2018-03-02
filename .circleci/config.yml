@@ -36,10 +36,10 @@ jobs:
                 name: Run tests
                 command: npm test
 
-            - run:
-                name: Report coverage to Coveralls
-                command: cat ./test-results/report/lcov.info | node_modules/coveralls/bin/coveralls.js
-                when: always
+            # - run:
+            #     name: Report coverage to Coveralls
+            #     command: cat ./test-results/report/lcov.info | node_modules/coveralls/bin/coveralls.js
+            #     when: always
 
             - store_test_results:
                 path: ./test-results/junit
