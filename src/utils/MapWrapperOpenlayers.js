@@ -20,6 +20,7 @@ import Ol_Style_Fill from "ol/style/fill";
 import Ol_Style from "ol/style/style";
 import Ol_Style_Text from "ol/style/text";
 import Ol_Style_Circle from "ol/style/circle";
+import Ol_Style_RegularShape from "ol/style/regularshape";
 import Ol_Style_Stroke from "ol/style/stroke";
 import Ol_Proj from "ol/proj";
 import Ol_Proj_Projection from "ol/proj/projection";
@@ -105,6 +106,83 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
             return false;
         } catch (err) {
             console.warn("Error in MapWrapperOpenlayers.zoomToLayer:", err);
+            return false;
+        }
+    }
+
+    /**
+     * update a layer on the map. This creates a new layer
+     * and replaces the layer with a matching id
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @returns {boolean} true if it succeeds
+     * @memberof MapWrapperOpenlayers
+     */
+    updateLayer(layer) {
+        try {
+            if (
+                layer.get("handleAs") === appStringsCore.LAYER_VECTOR_KML &&
+                layer.get("vectorStyle") === appStrings.VECTOR_STYLE_STORM
+            ) {
+                let mapLayers = this.map.getLayers().getArray();
+                let mapLayer = this.miscUtil.findObjectInArray(
+                    mapLayers,
+                    "_layerId",
+                    layer.get("id")
+                );
+                if (mapLayer) {
+                    // update the layer
+                    this.setLayerRefInfo(layer, mapLayer);
+
+                    let date = moment(mapLayer.get("_layerTime"), layer.get("timeFormat")).startOf(
+                        "d"
+                    );
+                    let nextDate = moment(date).add(1, "d");
+                    mapLayer.getSource().forEachFeature(feature => {
+                        let featureTime = moment(feature.get("dtg"), layer.get("timeFormat"));
+                        if (featureTime.isBetween(date, nextDate, null, "[)")) {
+                            let category = this.mapUtil.getStormCategory(
+                                parseInt(feature.get("intensity"))
+                            );
+                            feature.setStyle([
+                                new Ol_Style({
+                                    image: new Ol_Style_Circle({
+                                        fill: new Ol_Style_Fill({ color: "#000" }),
+                                        radius: 10
+                                    }),
+                                    zIndex: 2
+                                }),
+                                new Ol_Style({
+                                    image: new Ol_Style_Circle({
+                                        fill: new Ol_Style_Fill({ color: "#fff" }),
+                                        radius: 9.25
+                                    }),
+                                    zIndex: 2
+                                }),
+                                new Ol_Style({
+                                    image: new Ol_Style_Circle({
+                                        fill: new Ol_Style_Fill({ color: category.color }),
+                                        stroke: new Ol_Style_Stroke({
+                                            color: "#000",
+                                            width: 1.25
+                                        }),
+                                        radius: 7.5
+                                    }),
+                                    zIndex: 2
+                                })
+                            ]);
+                        } else {
+                            feature.setStyle(null);
+                        }
+                    });
+                }
+
+                return true;
+            } else {
+                return MapWrapperOpenlayersCore.prototype.updateLayer.call(this, layer);
+            }
+        } catch (err) {
+            console.warn("Error in MapWrapperOpenlayers.updateLayer:", err);
             return false;
         }
     }
