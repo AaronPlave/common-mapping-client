@@ -34,7 +34,7 @@ jobs:
 
             - run:
                 name: Run tests
-                command: npm test --includecoretests
+                command: npm test
 
             - run:
                 name: Report coverage to Coveralls
