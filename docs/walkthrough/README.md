@@ -16,5 +16,4 @@ TODO COPY SUMMARY INFO WHEN DONE
 * Adding Mars Terrain
 * Adding "Fly To" Layer Functionality
 * Customizing Help Modal Content
-* Tweaking Measurements for Mars
 * Changing the App Theme
