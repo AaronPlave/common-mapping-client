@@ -1,3 +1,5 @@
+@import "~styles/colors";
+
 .root {
     padding: 0px 0.5rem;
 }
@@ -17,4 +19,8 @@
 .sublabel {
     padding-left: 1.6rem;
     margin-bottom: 0.3rem;
+}
+
+.contrastTextColor {
+    color: white;
 }

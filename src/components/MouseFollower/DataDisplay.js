@@ -15,13 +15,20 @@ export class DataDisplay extends Component {
             this.props.data.getIn(["layer", "timeFormat"])
         ).format("MMM DD · HH:mm UTC");
         let color = MapUtil.getStormColor(dataProps.get("intensity"));
-
+        let textColorClass = appStrings.STORM_TEXT_COLOR_CONTRAST_MAP[color]
+            ? styles.contrastTextColor
+            : "";
+        console.log(textColorClass, "?");
         return (
             <div className={styles.root}>
-                <div className={styles.color} style={{ background: color }} />
-                <Typography variant="body2" className={styles.label}>
-                    {this.props.data.getIn(["layer", "title"])}
-                </Typography>
+                <div className={styles.titleContainer} style={{ background: color }}>
+                    <Typography variant="body2" className={styles.label}>
+                        {this.props.data.getIn(["layer", "title"])}
+                    </Typography>
+                    <Typography variant="body2" className={textColorClass}>
+                        Category 3 Hurricane
+                    </Typography>
+                </div>
                 <Typography variant="caption" className={styles.sublabel}>
                     {timeStr}
                 </Typography>

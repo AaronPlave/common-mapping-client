@@ -17,3 +17,13 @@ export const STORM_COLORS = {
     cat_4: "#fb8c00",
     cat_5: "#e53935"
 };
+
+export const STORM_TEXT_COLOR_CONTRAST_MAP = {
+    tropical_depression: false,
+    tropical_storm: false,
+    cat_1: false,
+    cat_2: false,
+    cat_3: false,
+    cat_4: true,
+    cat_5: true
+};
