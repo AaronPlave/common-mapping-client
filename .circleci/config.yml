@@ -57,7 +57,7 @@ jobs:
 
             - add_ssh_keys:
                 fingerprints:
-                    - "2a:ed:6a:f3:34:9d:7a:17:e3:75:74:2d:4f:ab:75:7d"
+                    - "83:b2:3f:7c:42:b3:49:e7:56:1f:fb:4e:b2:27:18:7a"
 
             - deploy:
                 name: Deploy to Github Pages
