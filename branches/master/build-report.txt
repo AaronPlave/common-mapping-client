@@ -1,7 +1,7 @@
 Generating minified bundle for production via Webpack. This will take a moment...
-Webpack stats: Hash: f2c9edb701c9eb226cb4
+Webpack stats: Hash: 820a05452163b801cf72
 Version: webpack 3.10.0
-Time: 74746ms
+Time: 76740ms
                                             Asset       Size  Chunks                    Chunk Names
 img/VIIRS_SNPP_CorrectedReflectance_TrueColor.png     990 kB          [emitted]  [big]  
                    6f3d9cbd8ae1816cad9d.worker.js    8.86 kB          [emitted]         
@@ -25,22 +25,22 @@ img/VIIRS_SNPP_CorrectedReflectance_TrueColor.png     990 kB          [emitted] 
                                   inlineStyles.js  530 bytes       1  [emitted]         inlineStyles
                                        bundle.css    28.7 kB       0  [emitted]         index
                                        index.html    8.39 kB          [emitted]         
- [589] ./node_modules/css-loader/lib/css-base.js 2.26 kB {0} [built]
+  [36] ./node_modules/react-dom/index.js 1.36 kB {0} [built]
  [697] multi ./src/index 28 bytes {0} [built]
  [698] ./src/index.js 2.69 kB {0} [built]
- [699] ./node_modules/babel-polyfill/lib/index.js 833 bytes {0} [built]
- [915] ./src/store/configureStore.js 382 bytes {0} [built]
-[1078] ./src/components/App/index.js 400 bytes {0} [built]
-[1471] ./src/_core/styles/resources/img/apple-touch-icon.png 70 bytes {0} [built]
-[1472] ./src/_core/styles/resources/img/favicon-32x32.png 67 bytes {0} [built]
-[1473] ./src/_core/styles/resources/img/favicon-16x16.png 67 bytes {0} [built]
-[1474] ./src/_core/styles/resources/img/safari-pinned-tab.svg 71 bytes {0} [built]
-[1475] ./src/_core/styles/resources/img/favicon.ico 61 bytes {0} [built]
-[1476] ./src/_core/styles/resources/img/7994970.png 61 bytes {0} [built]
-[1477] ./src/_core/styles/resources/img/layer_thumbnails/AMSR2_Sea_Ice_Brightness_Temp_6km_89H.png 91 bytes {0} [built]
-[1487] ./src/styles/inlineStyles.js 254 bytes {1} [built]
-[1488] ./src/styles/inlineStyles.scss 41 bytes {1} [built]
-    + 1477 hidden modules
+[1474] ./src/_core/styles/resources/img/favicon.ico 61 bytes {0} [built]
+[1477] ./src/_core/styles/resources/img/layer_thumbnails/GHRSST_L4_G1SST_Sea_Surface_Temperature.png 93 bytes {0} [built]
+[1478] ./src/_core/styles/resources/img/layer_thumbnails/MODIS_Terra_Brightness_Temp_Band31_Day.png 92 bytes {0} [built]
+[1479] ./src/_core/styles/resources/img/layer_thumbnails/VIIRS_SNPP_CorrectedReflectance_TrueColor.png 95 bytes {0} [built]
+[1480] ./src/_core/styles/resources/img/layer_thumbnails/flight_paths_kml.png 70 bytes {0} [built]
+[1481] ./src/_core/styles/resources/img/layer_thumbnails/us_state_outline_topojson.png 79 bytes {0} [built]
+[1482] ./src/_core/styles/resources/img/layer_thumbnails/ESRI_World_Imagery.jpeg 73 bytes {0} [built]
+[1483] ./src/_core/styles/resources/img/layer_thumbnails/BlueMarble_ShadedRelief_Bathymetry.jpeg 89 bytes {0} [built]
+[1484] ./src/_core/styles/resources/img/layer_thumbnails/OSM_Land_Water_Map.png 72 bytes {0} [built]
+[1485] ./src/_core/styles/resources/img/layer_thumbnails/ASTER_GDEM_Color_Shaded_Relief.jpeg 85 bytes {0} [built]
+[1486] ./src/styles/inlineStyles.js 254 bytes {1} [built]
+[1487] ./src/styles/inlineStyles.scss 41 bytes {1} [built]
+    + 1476 hidden modules
 Child html-webpack-plugin for "index.html":
          Asset    Size  Chunks  Chunk Names
     index.html  547 kB       0  
