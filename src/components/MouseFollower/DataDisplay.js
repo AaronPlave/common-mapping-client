@@ -14,11 +14,11 @@ export class DataDisplay extends Component {
             dataProps.get("dtg"),
             this.props.data.getIn(["layer", "timeFormat"])
         ).format("MMM DD · HH:mm UTC");
-        let color = MapUtil.getStormColor(dataProps.get("intensity"));
+        let category = MapUtil.getStormCategory(dataProps.get("intensity"));
 
         return (
             <div className={styles.root}>
-                <div className={styles.color} style={{ background: color }} />
+                <div className={styles.color} style={{ background: category.color }} />
                 <Typography variant="body2" className={styles.label}>
                     {this.props.data.getIn(["layer", "title"])}
                 </Typography>
