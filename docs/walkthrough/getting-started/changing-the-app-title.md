@@ -4,19 +4,23 @@ Let's continue with some other basic customizations by changing the title of thi
 
 ## Changing the app title in app config
 
-First we'll override the default application title of _"Common Mapping Client"_ and set it to _"CMC Walkthrough – Mars"_. To do so, we'll need to make use of the `appConfig.js` file located under `src/constants/`. By adding to the `APP_CONFIG` object we can override values found in the Core `appConfig.js` file located under `src/_core/constants/`. In our case we'll override `APP_TITLE`.
+First we'll override the default application title of _"Common Mapping Client"_ and set it to _"CMC Walkthrough"_. To do so, we'll need to make use of the `appConfig.js` file located under `src/constants/`. By adding to the `APP_CONFIG` object we can override values found in the Core `appConfig.js` file located under `src/_core/constants/`. In our case we'll override `APP_TITLE`.
+
 ```JS
 const APP_CONFIG = Immutable.fromJS({
-    APP_TITLE: "CMC Walkthrough – Mars"
+    APP_TITLE: "CMC Walkthrough"
 });
 ```
 
-## Changing the app title in index_template.html
+## Changing the app title in index\_template.html
+
 One other place we need to change the app title is in our splash screen since this isn't hooked up to use our appConfig.
+
 ```HTML
-<title>CMC Walkthrough – Mars</title>
+<title>CMC Walkthrough</title>
 ...
-<div class="loadingAppTitle">CMC Walkthrough – Mars</div>
+<div class="loadingAppTitle">CMC Walkthrough</div>
 ```
 
 Now back in the browser reload the application and you should see the splash screen title and the app title in the top right corner reflect the newly configured title.
+
