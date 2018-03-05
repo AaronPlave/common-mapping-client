@@ -6,6 +6,8 @@
  */
 
 import moment from "moment";
+import * as appStringsCore from "_core/constants/appStrings";
+import * as appStrings from "constants/appStrings";
 import MapWrapperCesiumCore from "_core/utils/MapWrapperCesium";
 import MapUtil from "utils/MapUtil";
 
@@ -50,6 +52,56 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
             return false;
         } catch (err) {
             console.warn("Error in MapWrapperCesiumExtended.zoomToLayer:", err);
+            return false;
+        }
+    }
+
+    /**
+     * update a layer on the map. This creates a new layer
+     * and replaces the layer with a matching id
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @returns {boolean} true if it succeeds
+     * @memberof MapWrapperCesium
+     */
+    updateLayer(layer) {
+        try {
+            if (
+                layer.get("handleAs") === appStringsCore.LAYER_VECTOR_KML &&
+                layer.get("vectorStyle") === appStrings.VECTOR_STYLE_STORM
+            ) {
+                let mapLayers = this.getMapLayers(layer.get("handleAs"));
+                let mapLayer = this.findLayerInMapLayers(mapLayers, layer);
+                if (mapLayer) {
+                    mapLayer._layerTime = moment(this.mapDate).format(layer.get("timeFormat"));
+
+                    let date = moment(mapLayer._layerTime, layer.get("timeFormat")).startOf("d");
+                    let nextDate = moment(date).add(1, "d");
+
+                    let features = mapLayer.entities.values;
+                    for (let i = 0; i < features.length; ++i) {
+                        let feature = features[i];
+                        if (feature.kml.extendedData) {
+                            feature.point.pixelSize = 10;
+                            feature.point.outlineColor = this.cesium.Color.BLACK;
+
+                            let featureTime = moment(
+                                feature.kml.extendedData.dtg.value,
+                                layer.get("timeFormat")
+                            );
+                            if (featureTime.isBetween(date, nextDate, null, "[)")) {
+                                feature.point.pixelSize = 13;
+                                feature.point.outlineColor = this.cesium.Color.WHITE;
+                            }
+                        }
+                    }
+                }
+                return true;
+            } else {
+                return MapWrapperCesiumCore.prototype.updateLayer.call(this, layer);
+            }
+        } catch (err) {
+            console.warn("Error in MapWrapperCesium.updateLayer:", err);
             return false;
         }
     }

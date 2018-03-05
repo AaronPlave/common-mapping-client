@@ -50,7 +50,6 @@
             "handleAs": "vector_kml",
             "vectorStyle": "storm",
             "units": "knots",
-            "updateParameters": { "time": false },
             "url": "default-data/demo-default-data/al152017_best_track_Maria.kml",
             "timeFormat": "YYYY MMM DD HHmm",
             "metadata": {
