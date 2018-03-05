@@ -8,22 +8,12 @@ export const ALERTS = {
 
 export const VECTOR_STYLE_STORM = "storm";
 
-export const STORM_COLORS = {
-    tropical_depression: "#1976d2",
-    tropical_storm: "#26c6da",
-    cat_1: "#ffee58",
-    cat_2: "#ffca28",
-    cat_3: "#ffb300",
-    cat_4: "#fb8c00",
-    cat_5: "#e53935"
-};
-
-export const STORM_TEXT_COLOR_CONTRAST_MAP = {
-    tropical_depression: false,
-    tropical_storm: false,
-    cat_1: false,
-    cat_2: false,
-    cat_3: false,
-    cat_4: true,
-    cat_5: true
+export const STORM_CATEGORIES = {
+    tropical_depression: { color: "#1976d2", textColor: "black", label: "Tropical Depression" },
+    tropical_storm: { color: "#26c6da", textColor: "white", label: "Tropical Storm" },
+    cat_1: { color: "#ffee58", textColor: "black", label: "Category 1 Hurricane" },
+    cat_2: { color: "#ffca28", textColor: "black", label: "Category 2 Hurricane" },
+    cat_3: { color: "#ffb300", textColor: "black", label: "Category 3 Hurricane" },
+    cat_4: { color: "#fb8c00", textColor: "white", label: "Category 4 Hurricane" },
+    cat_5: { color: "#e53935", textColor: "white", label: "Category 5 Hurricane" }
 };

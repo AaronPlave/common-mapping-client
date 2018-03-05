@@ -74,11 +74,11 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
                         feature.label = undefined;
                         feature._layerId = layer.get("id");
                         if (feature.kml.extendedData) {
-                            let color = this.mapUtil.getStormColor(
+                            let category = this.mapUtil.getStormCategory(
                                 parseInt(feature.kml.extendedData.intensity.value)
                             );
                             feature.point = new this.cesium.PointGraphics({
-                                color: new this.cesium.Color.fromCssColorString(color),
+                                color: new this.cesium.Color.fromCssColorString(category.color),
                                 pixelSize: 10,
                                 outlineWidth: 1.25
                             });

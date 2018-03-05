@@ -207,7 +207,7 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
             let nodeTime = feature.get("dtg");
             let time = moment(nodeTime, layer.get("timeFormat"));
             let timeStr = time.format("MMM DD · HH:mm UTC");
-            let color = this.mapUtil.getStormColor(parseInt(feature.get("intensity")));
+            let category = this.mapUtil.getStormCategory(parseInt(feature.get("intensity")));
 
             let textStyle = new Ol_Style_Text({
                 font: "12px Roboto, sans-serif",
@@ -225,7 +225,7 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
             });
 
             let pointStyle = new Ol_Style_Circle({
-                fill: new Ol_Style_Fill({ color: color }),
+                fill: new Ol_Style_Fill({ color: category.color }),
                 stroke: new Ol_Style_Stroke({
                     color: "#000",
                     width: 1.25

@@ -13,25 +13,27 @@ export class DataDisplay extends Component {
         let timeStr = moment(
             dataProps.get("dtg"),
             this.props.data.getIn(["layer", "timeFormat"])
-        ).format("MMM DD · HH:mm UTC");
-        let color = MapUtil.getStormColor(dataProps.get("intensity"));
-        let textColorClass = appStrings.STORM_TEXT_COLOR_CONTRAST_MAP[color]
-            ? styles.contrastTextColor
-            : "";
-        console.log(textColorClass, "?");
+        ).format("MMM DD, HH:mm UTC");
+        let category = MapUtil.getStormCategory(dataProps.get("intensity"));
+
         return (
             <div className={styles.root}>
-                <div className={styles.titleContainer} style={{ background: color }}>
-                    <Typography variant="body2" className={styles.label}>
+                <div
+                    className={styles.titleContainer}
+                    style={{ background: category.color, color: category.textColor }}
+                >
+                    <Typography variant="body2" color="inherit" className={styles.title}>
                         {this.props.data.getIn(["layer", "title"])}
                     </Typography>
-                    <Typography variant="body2" className={textColorClass}>
-                        Category 3 Hurricane
+                    <Typography variant="body1" color="inherit" className={styles.subtitle}>
+                        {category.label}
                     </Typography>
                 </div>
-                <Typography variant="caption" className={styles.sublabel}>
-                    {timeStr}
-                </Typography>
+                <div className={styles.middleContent}>
+                    <Typography variant="body1" className={styles.sublabel}>
+                        {timeStr}
+                    </Typography>
+                </div>
                 <Typography variant="body1" className={styles.sublabel}>
                     {dataProps.get("intensity")} knots · {dataProps.get("minSeaLevelPres")} mb
                 </Typography>
