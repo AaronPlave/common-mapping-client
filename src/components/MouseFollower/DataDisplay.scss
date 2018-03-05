@@ -17,7 +17,7 @@
 }
 
 .title {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 600;
 }
 
@@ -30,7 +30,31 @@
 .contrastTextColor {
     color: white;
 }
-.middleContent {
+.middleContent,
+.bottomContent {
     padding: 8px 12px;
+}
+.middleContent {
     border-bottom: 1px solid $color-medium-light;
+    background: #f5f5f5;
+}
+.dateLabel,
+.mouseCoordinatesRoot {
+    font-weight: 500;
+}
+.dateLabel {
+    display: inline-block;
+}
+.mouseCoordinatesRoot {
+    margin-left: 20px;
+    display: inline-block;
+}
+.valueLabel {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.valueContainer {
+    display: inline-block;
+    margin-right: 40px;
 }
