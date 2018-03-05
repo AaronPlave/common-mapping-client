@@ -45,7 +45,7 @@
         },
         {
             "id": "storm_track_hurricane_maria",
-            "title": "Hurricane Maria - Storm Track",
+            "title": "Hurricane Maria Storm Track",
             "type": "data",
             "handleAs": "vector_kml",
             "vectorStyle": "storm",
