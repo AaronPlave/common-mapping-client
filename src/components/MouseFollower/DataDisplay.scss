@@ -1,7 +1,8 @@
 @import "~styles/colors";
 
 .root {
-    padding: 0px 0.5rem;
+    padding: 0;
+    margin: 0;
 }
 
 .color {
@@ -11,16 +12,25 @@
     border-radius: 50%;
     margin-right: 0.5rem;
 }
-
-.label {
-    display: inline-block;
+.titleContainer {
+    padding: 8px 12px;
 }
 
-.sublabel {
-    padding-left: 1.6rem;
-    margin-bottom: 0.3rem;
+.title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.subtitle {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .contrastTextColor {
     color: white;
+}
+.middleContent {
+    padding: 8px 12px;
+    border-bottom: 1px solid $color-medium-light;
 }
