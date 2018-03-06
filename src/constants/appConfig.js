@@ -17,7 +17,7 @@ const OPS_CONFIG = Immutable.fromJS(window.APPLICATION_CONFIG);
 
 // define your overrides for Core config here
 const APP_CONFIG = Immutable.fromJS({
-    APP_TITLE: "Common Mapping Client - Walkthrough",
+    APP_TITLE: "CMC Walkthrough",
     DEFAULT_PROJECTION: appStringsCore.PROJECTIONS.webmercator,
     URLS: {
         layerConfig: [
