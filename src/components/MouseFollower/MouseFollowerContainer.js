@@ -14,7 +14,7 @@ import {
     DrawingTooltip,
     MouseCoordinates as MouseCoordinatesCore
 } from "_core/components/MouseFollower";
-import { MouseCoordinates, DataDisplayContainer } from "components/MouseFollower";
+import { DataDisplayContainer } from "components/MouseFollower";
 import styles from "_core/components/MouseFollower/MouseFollowerContainer.scss";
 import displayStyles from "_core/styles/display.scss";
 
@@ -41,16 +41,7 @@ export class MouseFollowerContainer extends Component {
 
     renderCoordinates(data) {
         if (data.size > 0) {
-            let coords = data.getIn([0, "coords"]);
-            return (
-                <MouseCoordinates
-                    pixelCoordinate={Immutable.fromJS({
-                        lat: coords.get(0),
-                        lon: coords.get(1),
-                        isValid: true
-                    })}
-                />
-            );
+            return "";
         } else {
             return <MouseCoordinatesCore />;
         }
@@ -87,7 +78,6 @@ export class MouseFollowerContainer extends Component {
             [displayStyles.hidden]: !this.props.pixelCoordinate.get("showData") || drawOrMeasure
         });
 
-        // TODO - make a data display component
         return (
             <div className={containerClasses} style={style}>
                 <div className={styles.content}>

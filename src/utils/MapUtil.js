@@ -32,6 +32,4 @@ export default class MapUtil extends MapUtilCore {
 
         return "#ffffff";
     }
-
-    STORM_CATEGORIES;
 }
