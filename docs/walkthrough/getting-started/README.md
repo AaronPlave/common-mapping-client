@@ -6,10 +6,10 @@ TODO Add table of contents once done.
 
 JUST THINGS TO REMEMBER TO INCLUDE
 
-* Changing the Map Projection
 * Adding an Interactive Vector Layer
 * Adding a Fly-To-Layer Feature
 * Changing Help Text
+* Adding different basemaps
 
 
 

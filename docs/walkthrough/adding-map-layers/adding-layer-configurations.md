@@ -1,4 +1,4 @@
-# Modifying Layer Configurations
+# Modifying Layer Configurations - Part 1
 
 We'll now move on to adding the map layer configurations so that we can ingest and display these layers on our 2D and 3D maps. Inside of this new `demo-default-data` we'll be modifying two files: `capabilities.xml` and `layers.json`.
 
