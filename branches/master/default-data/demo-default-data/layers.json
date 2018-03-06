@@ -4,7 +4,7 @@
             "id": "VIIRS_SNPP_CorrectedReflectance_TrueColor",
             "title": "True Color",
             "type": "data",
-            "handleAs": "wmts_raster",
+            "handleAs": "GIBS_raster",
             "wmtsOptions": {
                 "urlFunctions": {
                     "openlayers": "kvpTimeParam",
@@ -22,7 +22,7 @@
             "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
             "title": "Sea Surface Temperature",
             "type": "data",
-            "handleAs": "wmts_raster",
+            "handleAs": "GIBS_raster",
             "min": 2.0,
             "max": 32.0,
             "units": "˚C",
@@ -110,8 +110,6 @@
                 "url": "https://map1a.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi",
                 "projection": "EPSG:4326",
                 "layer": "AMSR2_Surface_Precipitation_Rate_Night",
-                "requestEncoding": "KVP",
-                "format": "image/png",
                 "tileGrid": {
                     "matrixIds": [0, 1, 2, 3, 4, 5],
                     "tileSize": 512
@@ -176,7 +174,7 @@
             "title": "Blue Marble, Shaded Relief w/Bathymetry",
             "type": "basemap",
             "thumbnailImage": "img/BlueMarble_ShadedRelief_Bathymetry.jpeg",
-            "handleAs": "wmts_raster",
+            "handleAs": "GIBS_raster",
             "updateParameters": { "time": false }
         },
         {
@@ -184,7 +182,7 @@
             "title": "Land/Water Map (data from OSM)",
             "type": "basemap",
             "thumbnailImage": "img/OSM_Land_Water_Map.png",
-            "handleAs": "wmts_raster",
+            "handleAs": "GIBS_raster",
             "updateParameters": { "time": false }
         },
         {
@@ -252,7 +250,7 @@
             "title": "Digital Elevation Map (Color Shaded Relief)",
             "type": "basemap",
             "thumbnailImage": "img/ASTER_GDEM_Color_Shaded_Relief.jpeg",
-            "handleAs": "wmts_raster",
+            "handleAs": "GIBS_raster",
             "updateParameters": { "time": false }
         }
     ]

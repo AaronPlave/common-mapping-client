@@ -1,7 +1,7 @@
 Generating minified bundle for production via Webpack. This will take a moment...
-Webpack stats: Hash: 13e5567ef5cfd1338254
+Webpack stats: Hash: 96bcad41672d68c590e1
 Version: webpack 3.10.0
-Time: 74644ms
+Time: 80234ms
                                             Asset       Size  Chunks                    Chunk Names
 img/VIIRS_SNPP_CorrectedReflectance_TrueColor.png     990 kB          [emitted]  [big]  
                    6f3d9cbd8ae1816cad9d.worker.js    8.86 kB          [emitted]         
@@ -24,10 +24,10 @@ img/VIIRS_SNPP_CorrectedReflectance_TrueColor.png     990 kB          [emitted] 
                                          index.js    5.43 MB       0  [emitted]  [big]  index
                                   inlineStyles.js  530 bytes       1  [emitted]         inlineStyles
                                        bundle.css    29.4 kB       0  [emitted]         index
-                                       index.html    8.39 kB          [emitted]         
+                                       index.html    8.35 kB          [emitted]         
   [36] ./node_modules/react-dom/index.js 1.36 kB {0} [built]
- [699] multi ./src/index 28 bytes {0} [built]
- [700] ./src/index.js 2.69 kB {0} [built]
+ [689] multi ./src/index 28 bytes {0} [built]
+ [690] ./src/index.js 2.69 kB {0} [built]
 [1474] ./src/_core/styles/resources/img/favicon.ico 61 bytes {0} [built]
 [1477] ./src/_core/styles/resources/img/layer_thumbnails/GHRSST_L4_G1SST_Sea_Surface_Temperature.png 93 bytes {0} [built]
 [1478] ./src/_core/styles/resources/img/layer_thumbnails/MODIS_Terra_Brightness_Temp_Band31_Day.png 92 bytes {0} [built]
@@ -44,7 +44,7 @@ img/VIIRS_SNPP_CorrectedReflectance_TrueColor.png     990 kB          [emitted] 
 Child html-webpack-plugin for "index.html":
          Asset    Size  Chunks  Chunk Names
     index.html  547 kB       0  
-       [0] ./node_modules/html-webpack-plugin/lib/loader.js!./src/index_template.html 3.45 kB {0} [built]
+       [0] ./node_modules/html-webpack-plugin/lib/loader.js!./src/index_template.html 3.41 kB {0} [built]
        [1] ./node_modules/lodash/lodash.js 540 kB {0} [built]
        [2] (webpack)/buildin/global.js 509 bytes {0} [built]
        [3] (webpack)/buildin/module.js 517 bytes {0} [built]
