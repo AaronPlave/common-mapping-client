@@ -5,25 +5,21 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import Immutable from "immutable";
 import moment from "moment";
 import Ol_Layer_Vector from "ol/layer/vector";
 import Ol_Source_Cluster from "ol/source/cluster";
 import Ol_Source_Vector from "ol/source/vector";
 import Ol_Style_Fill from "ol/style/fill";
 import Ol_Style from "ol/style/style";
-import Ol_Style_Text from "ol/style/text";
 import Ol_Style_Circle from "ol/style/circle";
 import Ol_Style_Stroke from "ol/style/stroke";
 import Ol_Proj from "ol/proj";
 import Ol_Geom_Point from "ol/geom/point";
 import Ol_Format_KML from "ol/format/kml";
 import Ol_Easing from "ol/easing";
-import proj4js from "proj4";
 import * as appStringsCore from "_core/constants/appStrings";
 import * as appStrings from "constants/appStrings";
 import appConfig from "constants/appConfig";
-import MiscUtil from "_core/utils/MiscUtil";
 import MapUtil from "utils/MapUtil";
 import MapWrapperOpenlayersCore from "_core/utils/MapWrapperOpenlayers";
 
@@ -259,25 +255,7 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
      */
     createVectorLayerStyleStorm(layer) {
         return (feature, resolution) => {
-            let nodeTime = feature.get("dtg");
-            let time = moment(nodeTime, layer.get("timeFormat"));
-            let timeStr = time.format("MMM DD · HH:mm UTC");
             let category = this.mapUtil.getStormCategory(parseInt(feature.get("intensity")));
-
-            let textStyle = new Ol_Style_Text({
-                font: "12px Roboto, sans-serif",
-                overflow: true,
-                offsetX: 10,
-                textAlign: "left",
-                text: timeStr,
-                fill: new Ol_Style_Fill({
-                    color: "#000"
-                }),
-                stroke: new Ol_Style_Stroke({
-                    color: "#fff",
-                    width: 3
-                })
-            });
 
             let pointStyle = new Ol_Style_Circle({
                 fill: new Ol_Style_Fill({ color: category.color }),
