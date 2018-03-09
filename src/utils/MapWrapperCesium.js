@@ -165,7 +165,7 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
             );
             for (let i = 0; i < pickedObjects.length; ++i) {
                 let entity = pickedObjects[i];
-                if (entity.id.kml && entity.id.kml.extendedData) {
+                if (entity.id && entity.id.kml && entity.id.kml.extendedData) {
                     data.push({
                         layerId: entity.id._layerId,
                         properties: {

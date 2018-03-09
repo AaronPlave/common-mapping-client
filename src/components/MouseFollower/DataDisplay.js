@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import Typography from "material-ui/Typography";
 import Immutable from "immutable";
-import { MouseCoordinates } from "components/MouseFollower";
+import { LonLatCoordinates } from "_core/components/Reusables";
 import MapUtil from "utils/MapUtil";
 import * as appStrings from "constants/appStrings";
 import styles from "components/MouseFollower/DataDisplay.scss";
@@ -33,13 +33,10 @@ export class DataDisplay extends Component {
                 </div>
                 <div className={styles.middleContent}>
                     <Typography className={styles.dateLabel}>{timeStr}</Typography>
-                    <MouseCoordinates
+                    <LonLatCoordinates
                         className={styles.mouseCoordinatesRoot}
-                        pixelCoordinate={Immutable.fromJS({
-                            lat: coords.get(0),
-                            lon: coords.get(1),
-                            isValid: true
-                        })}
+                        lat={coords.get(0)}
+                        lon={coords.get(1)}
                     />
                 </div>
                 <div className={styles.bottomContent}>
