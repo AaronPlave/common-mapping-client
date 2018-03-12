@@ -8,7 +8,7 @@ Let's start by creating basic MapWrapper objects.
 
 Create : `src/utils/MapWrapperOpenlayers.js`
 
-```
+```js
 import MapWrapperOpenlayersCore from "_core/utils/MapWrapperOpenlayers";
 
 export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {}
@@ -16,7 +16,7 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {}
 
 Create: `src/utils/MapWrapperCesium.js`
 
-```
+```js
 import MapWrapperCesiumCore from "_core/utils/MapWrapperCesium";
 
 export default class MapWrapperCesium extends MapWrapperCesiumCore {}
@@ -28,12 +28,10 @@ Now we have two MapWrapper classes, one for each library we will be using to ren
 
 Let's look at `src/utils/MapCreator.js` . This file does one thing, it exports a function that is used to instantiate a MapWrapper. This is the function that CMC calls when the application attempts to initialize a map. By default, it will use the CMC Core MapWrappers for Openlayers \(2D\) and Cesium \(3D\). So all we have to do is change the import at the top to:
 
-```
+```js
 import MapWrapperOpenlayers from "utils/MapWrapperOpenlayers";
 import MapWrapperCesium from "utils/MapWrapperCesium";
 ```
 
 And now when the application initializes the 2D and 3D map, it will instantiate our new MapWrapper classes. Now let's see about modifying their behavior.
-
-
 

@@ -30,11 +30,9 @@ Later, we will be using the `vectorStyle: "storm"` to match this layer and custo
 
 Create and edit the following file: `src/constants/appStrings.js`
 
-```
+```js
 export const VECTOR_STYLE_STORM = "storm";
 ```
-
-
 
 Save your changes and refresh your browser. You should now see a layer control entry for "Hurricane Maria - Storm Track", however enabling it will likely do nothing except spit out some errors as we did not import the image sprites for the Placemarks in the KML.
 
