@@ -169,7 +169,7 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
      * @memberof MapWrapperOpenlayers
      */
     createVectorLayer(layer, fromCache = true) {
-        if (typeof layer.get("vectorStyle") !== "undefined") {
+        if (typeof layer.get("vectorStyle") === appStrings.VECTOR_STYLE_STORM) {
             try {
                 let layerSource = this.createLayerSource(layer, {
                     url: layer.get("url")

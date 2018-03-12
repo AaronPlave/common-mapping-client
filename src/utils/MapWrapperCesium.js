@@ -117,7 +117,7 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
     createVectorLayer(layer) {
         try {
             let layerSource = MapWrapperCesiumCore.prototype.createVectorLayer.call(this, layer);
-            if (layerSource) {
+            if (layerSource && layer.get("vectorStyle") === appStrings.VECTOR_STYLE_STORM) {
                 layerSource.then(mapLayer => {
                     let features = mapLayer.entities.values;
                     for (let i = 0; i < features.length; ++i) {
