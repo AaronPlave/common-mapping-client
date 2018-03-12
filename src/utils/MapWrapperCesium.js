@@ -117,30 +117,50 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
     createVectorLayer(layer) {
         try {
             let layerSource = MapWrapperCesiumCore.prototype.createVectorLayer.call(this, layer);
-            if (layerSource && layer.get("vectorStyle") === appStrings.VECTOR_STYLE_STORM) {
+            if (layerSource && typeof layer.get("vectorStyle") !== "undefined") {
                 layerSource.then(mapLayer => {
-                    let features = mapLayer.entities.values;
-                    for (let i = 0; i < features.length; ++i) {
-                        let feature = features[i];
-                        feature.billboard = undefined;
-                        feature.label = undefined;
-                        feature._layerId = layer.get("id");
-                        if (feature.kml.extendedData) {
-                            let category = this.mapUtil.getStormCategory(
-                                parseInt(feature.kml.extendedData.intensity.value)
-                            );
-                            feature.point = new this.cesium.PointGraphics({
-                                color: new this.cesium.Color.fromCssColorString(category.color),
-                                pixelSize: 10,
-                                outlineWidth: 1.25
-                            });
-                        }
-                    }
+                    this.setVectorLayerFeatureStyles(layer, mapLayer);
                 });
             }
             return layerSource;
         } catch (err) {
             console.warn("Error in MapWrapperCesium.createVectorLayer:", err);
+        }
+    }
+
+    /**
+     * Update the styles of a vector layer's set of entities
+     *
+     * @param {ImmutableJS.Map} layer layer object from map state in redux
+     * @param {object} mapLayer cesium layer object
+     * @returns {boolean} false if it fails
+     * @memberof MapWrapperCesium
+     */
+    setVectorLayerFeatureStyles(layer, mapLayer) {
+        try {
+            let features = mapLayer.entities.values;
+            if (layer.get("vectorStyle") === appStrings.VECTOR_STYLE_STORM) {
+                for (let i = 0; i < features.length; ++i) {
+                    let feature = features[i];
+                    feature.billboard = undefined;
+                    feature.label = undefined;
+                    feature._layerId = layer.get("id");
+                    if (feature.kml.extendedData) {
+                        let category = this.mapUtil.getStormCategory(
+                            parseInt(feature.kml.extendedData.intensity.value)
+                        );
+                        feature.point = new this.cesium.PointGraphics({
+                            color: new this.cesium.Color.fromCssColorString(category.color),
+                            pixelSize: 10,
+                            outlineWidth: 1.25
+                        });
+                    }
+                }
+            }
+            return true;
+        } catch (err) {
+            console.warn("Error in MapWrapperCesium.setVectorLayerFeatureStyles:", err);
+            return false;
         }
     }
 
