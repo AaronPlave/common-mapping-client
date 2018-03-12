@@ -15,7 +15,7 @@ This application is a demonstration of the Common Mapping Client.
 ## Extending Core Help component
 Now let's copy over the contents of `src/_core/components/Help` into `src/components/Help`. 
 
-To extend the Core Help component we need to import it and change the class definition of our component to extend the Core Help component instead of the base React component. Note that we need to import the component directly from the component file instead of from the root of the directory in order to import just the component class and not the redux `connect` with it.
+To extend the Core Help component we need to import it and change the class definition of our component to extend the Core Help component instead of the base React component. Note that we need to import the component directly from the component file instead of from the root of the component directory since the default export of the component is wrapped with the redux `connect` higher order component. We instead just want the component itself and will be exporting our own `connect`-ed component.
 
 Additionally, let's change the paths in the constructor to point to our markdown help files. We can also remove the render function since we don't need to modify the Core render version.
 
