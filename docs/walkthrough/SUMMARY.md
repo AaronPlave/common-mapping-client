@@ -20,6 +20,5 @@
     * [Reusable utility functions](adding-hurricane-track-vector-layer/extending-the-mapwrappers/reusable-utility-functions.md)
     * [Rendering the storm track in Openlayers](adding-hurricane-track-vector-layer/extending-the-mapwrappers/rendering-the-storm-track-in-openlayers.md)
 * [Extending and Replacing Core Components](extending-and-replacing-core-components/README.md)
-  * [Adding "fly to" layer functionality](extending-and-replacing-core-components/adding-fly-to-layer-functionality.md)
   * [Customizing help modal content](extending-and-replacing-core-components/customizing-help-modal-content.md)
-
+  * [Adding "fly to" layer functionality](extending-and-replacing-core-components/adding-fly-to-layer-functionality.md)
