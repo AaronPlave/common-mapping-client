@@ -27,6 +27,7 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
     }
     ...
 }
+```
 
 Now we can start modifying the rendering for our new vector type.
 
