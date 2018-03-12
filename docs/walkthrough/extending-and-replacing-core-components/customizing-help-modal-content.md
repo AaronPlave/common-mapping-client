@@ -86,7 +86,6 @@ Finally, we need to import our new help component into our App container:
 `import { HelpContainer } from "components/Help";`
 
 and remove the import of the Core Help component:
-
 ~~import { HelpContainer } from "_core/components/Help";~~
 
 If you save your work and reload the page you should now see  our new about page content displaying in the about subpage of the Help component.
