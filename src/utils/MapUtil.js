@@ -30,6 +30,6 @@ export default class MapUtil extends MapUtilCore {
             return appStrings.STORM_CATEGORIES.cat_5;
         }
 
-        return "#ffffff";
+        return { color: "#ffffff", label: "Category not found", textColor: "black" };
     }
 }
