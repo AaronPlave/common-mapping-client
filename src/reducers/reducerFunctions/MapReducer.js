@@ -15,7 +15,7 @@ import MapReducerCore from "_core/reducers/reducerFunctions/MapReducer";
 //State is considered immutable. Instead,
 //create a copy of the state passed and set new values on the copy.
 
-export default class MapReducerExtended extends MapReducerCore {
+export default class MapReducer extends MapReducerCore {
     static zoomToLayer(state, action) {
         // resolve layer from id if necessary
         let actionLayer = action.layer;
