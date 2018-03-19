@@ -54,7 +54,7 @@ export default class MapReducer extends MapReducerCore {
                 let data = [];
                 if (coords && coords.isValid) {
                     // find data if any
-                    data = map.getDataAtPoint(coords, action.pixel);
+                    data = map.getDataAtPoint(action.pixel);
                     data = data !== false ? data : [];
                     data = Immutable.fromJS(
                         data.map(entry => {
@@ -93,7 +93,7 @@ export default class MapReducer extends MapReducerCore {
                     let data = [];
                     if (coords && coords.isValid) {
                         // find data if any
-                        data = map.getDataAtPoint(coords, action.clickEvt.pixel);
+                        data = map.getDataAtPoint(action.clickEvt.pixel);
                         data = data !== false ? data : [];
                         data = Immutable.fromJS(
                             data.map(entry => {
