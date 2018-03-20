@@ -29,4 +29,4 @@ Finally, we need to configure our layers to actually use these new json files an
 ...
 ```
 
-Now reload and try to open the layer info for one of the data layers.
+Now reload the page and open the layer info modal for one of the data layers you've added. You should see the new metadata and image thumbnail we just configured for that layer.
