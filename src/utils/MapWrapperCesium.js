@@ -167,7 +167,6 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
     /**
      * retrieves an array of feature data at a given coordinate/pixel
      *
-     * @param {array} coords [lon,lat] map coordinates
      * @param {array} pixel  [x,y] screen coordinates
      * @returns {array} feature data objects
      * - layerId - {string} id of the layer this feature belongs to
@@ -175,7 +174,7 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
      * - coords - {array} [lon,lat] map coordinates of the feature
      * @memberof MapWrapperCesium
      */
-    getDataAtPoint(coords, pixel) {
+    getDataAtPoint(pixel) {
         try {
             let data = []; // the collection of pixel data to return
 

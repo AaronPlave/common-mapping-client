@@ -24,5 +24,15 @@ In `layers.json` , add the following entry:
 
 `"handleAs": "vector_kml"` will signal our MapWrapper classes to parse this layer as a KML and to render it as a vector. `"timeFormat": "YYYY MMM DD HHmm"` is a format string for [Moment.Js](http://momentjs.com) which is the library CMC uses for date parsing and manipulation. `"vectorStyle": "storm"` will signal our MapWrapper classes to use a specific styling strategy when rendering this layer. Note that `"vectorStyle"` is not part of the CMC layer model and in fact will do nothing until we create new functions to handle it in the following sections. Because CMC uses [ImmutableJS](https://facebook.github.io/immutable-js/) to merge all of the layer configurations together, it's ok that `"vectorStyle"` doesn't exist in the CMC Core layer model, this field will simply be added to this layer's data structure and for all other layers it will be read as `undefined`.
 
+## Avioding Mispellings
+
+Later, we will be using the `vectorStyle: "storm"` to match this layer and customize it's rendering on the map. That means we'll need to match the string "storm" exactly, so let's store that string in a constants file so we can access it programmatically.
+
+Create and edit the following file: `src/constants/appStrings.js`
+
+```js
+export const VECTOR_STYLE_STORM = "storm";
+```
+
 Save your changes and refresh your browser. You should now see a layer control entry for "Hurricane Maria - Storm Track", however enabling it will likely do nothing except spit out some errors as we did not import the image sprites for the Placemarks in the KML.
 
