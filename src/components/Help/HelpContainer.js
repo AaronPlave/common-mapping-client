@@ -10,22 +10,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import showdown from "showdown";
-import Paper from "material-ui/Paper";
-import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
-import Divider from "material-ui/Divider";
-import ListSubheader from "material-ui/List/ListSubheader";
-import DescriptionIcon from "material-ui-icons/Description";
-import LinkIcon from "material-ui-icons/Link";
-import OpenInNewIcon from "material-ui-icons/OpenInNew";
-import Typography from "material-ui/Typography";
 import * as appActions from "_core/actions/appActions";
-import appConfig from "constants/appConfig";
-import { ModalMenu } from "_core/components/ModalMenu";
-import { MarkdownPage } from "_core/components/Reusables";
 import { HelpContainer as HelpContainerCore } from "_core/components/Help/HelpContainer.js";
-import MiscUtil from "_core/utils/MiscUtil";
-import styles from "_core/components/Help/HelpContainer.scss";
-import displayStyles from "_core/styles/display.scss";
 
 export class HelpContainer extends HelpContainerCore {
     constructor(props) {
