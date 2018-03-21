@@ -30,6 +30,131 @@ to
 export class LayerControlContainer extends LayerControlContainerCore {
 ```
 
+Now we'll override the function that renders the row of icons inside the layer control in order to add a zoom-to button. We'll want to copy the original `renderIconRow` function and add our button. We'll also need to import an icon to use for this icon button.
+
+```JSX
+...
+import TargetIcon from "material-ui-icons/FilterCenterFocus";
+...
+export class LayerControlContainer extends LayerControlContainerCore {
+...
+    renderIconRow() {
+        let positionPopoverClasses = MiscUtil.generateStringFromSet({
+            [styles.popover]: true,
+            [styles.positionPopover]: true,
+            [displayStyles.noPointer]: !this.isChangingPosition
+        });
+
+        let opacityPopoverClasses = MiscUtil.generateStringFromSet({
+            [styles.popover]: true,
+            [displayStyles.noPointer]: !this.isChangingOpacity
+        });
+
+        return (
+            <span className={styles.layerControlIconRow}>
+                <Manager style={{ display: "inline-block" }}>
+                    <ClickAwayListener
+                        onClickAway={() => {
+                            if (this.isChangingPosition) {
+                                this.toggleChangingPosition();
+                            }
+                        }}
+                    >
+                        <Target style={{ display: "inline-block" }}>
+                            <Tooltip title={"Set Layer Position"} placement="top">
+                                <LayerPositionIcon
+                                    displayIndex={this.props.layer.get("displayIndex")}
+                                    activeNum={this.props.activeNum}
+                                    className={styles.iconButtonSmall}
+                                    color={this.isChangingPosition ? "primary" : "default"}
+                                    onClick={() => this.toggleChangingPosition()}
+                                />
+                            </Tooltip>
+                        </Target>
+                        <Popper
+                            placement="left-end"
+                            modifiers={{
+                                computeStyle: {
+                                    gpuAcceleration: false
+                                }
+                            }}
+                            eventsEnabled={this.isChangingPosition}
+                            className={positionPopoverClasses}
+                        >
+                            <Grow style={{ transformOrigin: "right" }} in={this.isChangingPosition}>
+                                <div>
+                                    <LayerPositionControl
+                                        isActive={this.isChangingPosition}
+                                        moveToTop={() => this.moveToTop()}
+                                        moveToBottom={() => this.moveToBottom()}
+                                        moveUp={() => this.moveUp()}
+                                        moveDown={() => this.moveDown()}
+                                    />
+                                </div>
+                            </Grow>
+                        </Popper>
+                    </ClickAwayListener>
+                    <ClickAwayListener
+                        onClickAway={() => {
+                            if (this.isChangingOpacity) {
+                                this.toggleChangingOpacity();
+                            }
+                        }}
+                    >
+                        <Target style={{ display: "inline-block" }}>
+                            <Tooltip title={"Set Layer Opacity"} placement="top">
+                                <LayerOpacityIcon
+                                    opacity={this.props.layer.get("opacity")}
+                                    className={styles.iconButtonSmall}
+                                    color={this.isChangingOpacity ? "primary" : "default"}
+                                    onClick={() => this.toggleChangingOpacity()}
+                                />
+                            </Tooltip>
+                        </Target>
+                        <Popper
+                            placement="left-end"
+                            modifiers={{
+                                computeStyle: {
+                                    gpuAcceleration: false
+                                }
+                            }}
+                            className={opacityPopoverClasses}
+                            eventsEnabled={this.isChangingOpacity}
+                        >
+                            <Grow style={{ transformOrigin: "right" }} in={this.isChangingOpacity}>
+                                <div>
+                                    <LayerOpacityControl
+                                        isActive={this.isChangingOpacity}
+                                        opacity={this.props.layer.get("opacity")}
+                                        onChange={value => this.changeOpacity(value)}
+                                    />
+                                </div>
+                            </Grow>
+                        </Popper>
+                    </ClickAwayListener>
+                </Manager>
+                <Tooltip title="Zoom to Layer" placement="top">
+                    <IconButtonSmall
+                        className={styles.iconButtonSmall}
+                        onClick={() => this.zoomToLayer()}
+                    >
+                        <TargetIcon />
+                    </IconButtonSmall>
+                </Tooltip>
+                <Tooltip title="Layer information" placement="top">
+                    <IconButtonSmall
+                        className={styles.iconButtonSmall}
+                        onClick={() => this.openLayerInfo()}
+                    >
+                        <InfoOutlineIcon />
+                    </IconButtonSmall>
+                </Tooltip>
+            </span>
+        );
+    }
+}    
+```
+
 
 
 
