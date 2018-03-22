@@ -110,7 +110,6 @@ Create and edit `src/components/MouseFollower/DataDisplayContainer.js`
 ```js
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import MiscUtil from "_core/utils/MiscUtil";
 import { DataDisplay } from "components/MouseFollower";
 
@@ -134,7 +133,7 @@ DataDisplayContainer.propTypes = {
     className: PropTypes.string
 };
 
-export default connect()(DataDisplayContainer);
+export default DataDisplayContainer;
 ```
 You may recall that we explicitly returned an array with a single data entry in our hover interaction (or an empty array if there was no data found). That, combined with our use of `map` to render each entry, means that we don't have to do any checking for undefined entries of lists of length 0 to skip rendering as that will be done implicitly.
 
@@ -145,7 +144,6 @@ Create and edit `src/components/MouseFollower/DataDisplay.js`
 ```js
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import moment from "moment";
 import Typography from "material-ui/Typography";
 import Immutable from "immutable";
@@ -211,8 +209,75 @@ DataDisplay.propTypes = {
     data: PropTypes.object.isRequired
 };
 
-export default connect()(DataDisplay);
+export default DataDisplay;
 ```
+
+Now to style it, create and edit `src/components/MouseFollower/DataDisplay.scss`
+
+```css
+@import "~styles/colors";
+
+.root {
+    padding: 0;
+    margin: 0;
+}
+
+.color {
+    display: inline-block;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+.titleContainer {
+    padding: 8px 12px;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.subtitle {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.contrastTextColor {
+    color: white;
+}
+.middleContent,
+.bottomContent {
+    padding: 8px 12px;
+}
+.middleContent {
+    border-bottom: 1px solid $color-medium-light;
+    background: #f5f5f5;
+}
+.dateLabel,
+.mouseCoordinatesRoot {
+    font-weight: 500;
+}
+.dateLabel {
+    display: inline-block;
+}
+.mouseCoordinatesRoot {
+    margin-left: 20px;
+    display: inline-block;
+}
+.valueLabel {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.valueContainer {
+    display: inline-block;
+    margin-right: 40px;
+}
+```
+Notice at the top that we are importing the color SASS variables.
+
 
 ## Using the New Component
 
