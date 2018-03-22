@@ -53,7 +53,7 @@
             "url": "default-data/demo-default-data/al152017_best_track_Maria.kml",
             "timeFormat": "YYYY MMM DD HHmm",
             "metadata": {
-                "url": "default-data/_core_default-data/layer-metadata/flight_paths_kml.json",
+                "url": "default-data/demo-default-data/layer-metadata/storm_track.json",
                 "handleAs": "json"
             },
             "palette": {
@@ -62,7 +62,7 @@
                 "max": ">=136",
                 "handleAs": "json-fixed"
             },
-            "thumbnailImage": "img/flight_paths_kml.png"
+            "thumbnailImage": "img/storm_track.png"
         },
         {
             "id": "AMSR2_Surface_Precipitation_Rate_Day_EPSG4326",
@@ -88,14 +88,14 @@
             },
             "metadata": {
                 "url":
-                    "default-data/_core_default-data/layer-metadata/GHRSST_L4_G1SST_Sea_Surface_Temperature.json",
+                    "default-data/demo-default-data/layer-metadata/AMSR2_Surface_Precipitation_Rate_Day_EPSG4326.json",
                 "handleAs": "json"
             },
             "palette": {
                 "name": "AMSR2_Surface_Precipitation_Rate",
                 "handleAs": "json-relative"
             },
-            "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
+            "thumbnailImage": "img/surface_precipitation_day.png"
         },
         {
             "id": "AMSR2_Surface_Precipitation_Rate_Night_EPSG4326",
@@ -121,14 +121,14 @@
             },
             "metadata": {
                 "url":
-                    "default-data/_core_default-data/layer-metadata/GHRSST_L4_G1SST_Sea_Surface_Temperature.json",
+                    "default-data/demo-default-data/layer-metadata/AMSR2_Surface_Precipitation_Rate_Night_EPSG4326.json",
                 "handleAs": "json"
             },
             "palette": {
                 "name": "AMSR2_Surface_Precipitation_Rate",
                 "handleAs": "json-relative"
             },
-            "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
+            "thumbnailImage": "img/surface_precipitation_night.png"
         },
         {
             "id": "Reference_Labels",

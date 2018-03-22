@@ -1,0 +1,7 @@
+{
+    "title": "Surface Precipitation Rate (Night, AMSR2, GCOM-W1)",
+    "description": "The Advanced Microwave Scanning Radiometer 2 (AMSR2) instrument on the Global Change Observation Mission - Water 1 (GCOM-W1) provides global passive microwave measurements of terrestrial, oceanic, and atmospheric parameters for the investigation of global water and energy cycles. Precipitation estimates including both rain and snow from  AMSR2 brightness temperature data are mapped to a 0.25 degree resolution. Day/Night data allow one to determine the diurnal cycle of precipitation.",
+    "dateRange": "2015/06/07 – Present",
+    "platform": "GCOM-W1, AMSR2",
+    "spatialResolution": "25km spatial resolution"
+}
