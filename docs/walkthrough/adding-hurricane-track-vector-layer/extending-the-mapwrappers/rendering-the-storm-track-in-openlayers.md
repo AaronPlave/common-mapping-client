@@ -4,7 +4,7 @@ Rendering a layer in the MapWrapper class is done by calling the `setLayerActive
 
 All of the following edits shall be made to `utils/MapWrapperOpenlayers.js` unless otherwise noted.
 
-## Placeholder Stuff
+## Getting Started
 
 Start by adding the following imports to the top of the file:
 
