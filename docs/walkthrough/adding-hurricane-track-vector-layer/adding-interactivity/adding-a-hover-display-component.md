@@ -276,13 +276,113 @@ Now to style it, create and edit `src/components/MouseFollower/DataDisplay.scss`
     margin-right: 40px;
 }
 ```
-Notice at the top that we are importing the color SASS variables.
-
 
 ## Using the New Component
 
-Add state to `MouseFollowerContainer`
+Now that we have a new component for displaying the hover data, we need to get the `MouseFollowerContainer` to actually use it. All of the following edits are made to `src/components/MouseFollower/MouseFollowerContainer.js` unless otherwise noted.
 
-Update methods and render
+Import the new component
 
-Save and refresh and be amazed
+```js
+...
+import { DataDisplayContainer } from "components/MouseFollower";
+...
+```
+
+`shouldComponentUpdate()` is a method that React calls to determine if it can skip rendering a component. It is optional, but can greatly improve performance if a component is being rendered a lot without actually changing. In this case, we need to modify the current implementation as it is only rendering when a change occurs to the draw state.
+
+```js
+...
+shouldComponentUpdate(nextProps) {
+    let nextDraworMeasure =
+        nextProps.drawing.get("isDrawingEnabled") ||
+        nextProps.measuring.get("isMeasuringEnabled");
+    let currDrawOrMeasure =
+        this.props.drawing.get("isDrawingEnabled") ||
+        this.props.measuring.get("isMeasuringEnabled");
+
+    let currShowData =
+        this.props.pixelCoordinate.get("isValid") && this.props.pixelCoordinate.get("showData");
+    let nextShowData =
+        nextProps.pixelCoordinate.get("isValid") && nextProps.pixelCoordinate.get("showData");
+
+    return (
+        nextDraworMeasure ||
+        nextDraworMeasure !== currDrawOrMeasure ||
+        (nextShowData || nextShowData !== currShowData)
+    );
+}
+...
+```
+
+Now for our particular design, we don't want to display the current mouse coordinates when displaying the data entry, so let's create a method that will provide us that toggle
+
+```js
+...
+renderCoordinates(data) {
+    if (data.size > 0) {
+        return "";
+    } else {
+        return <MouseCoordinates />;
+    }
+}
+...
+```
+
+And now to add the `DataDisplayContainer` to the rendered component.
+
+```js
+...
+render() {
+    let maxLeft = window.innerWidth - 300;
+    let maxTop = window.innerHeight;
+
+    let top = parseInt(this.props.pixelCoordinate.get("y"));
+    let left = parseInt(this.props.pixelCoordinate.get("x"));
+
+    let style = { top, left };
+
+    let drawOrMeasure =
+        this.props.drawing.get("isDrawingEnabled") ||
+        this.props.measuring.get("isMeasuringEnabled");
+
+    let containerClasses = MiscUtil.generateStringFromSet({
+        [styles.mouseFollowerContainer]: true,
+        [styles.active]:
+            this.props.pixelCoordinate.get("isValid") &&
+            (this.props.pixelCoordinate.get("showData") || drawOrMeasure),
+        [styles.right]: left > maxLeft,
+        [this.props.className]: typeof this.props.className !== "undefined"
+    });
+
+    let drawClasses = MiscUtil.generateStringFromSet({
+        [displayStyles.hidden]: !drawOrMeasure
+    });
+
+    let dataClasses = MiscUtil.generateStringFromSet({
+        [displayStyles.hidden]: !this.props.pixelCoordinate.get("showData") || drawOrMeasure
+    });
+
+    return (
+        <div className={containerClasses} style={style}>
+            <div className={styles.content}>
+                <DrawingTooltip
+                    drawing={this.props.drawing}
+                    measuring={this.props.measuring}
+                    className={drawClasses}
+                />
+                <DataDisplayContainer
+                    className={dataClasses}
+                    data={this.props.pixelCoordinate.get("data")}
+                />
+            </div>
+            <div className={styles.footer}>
+                {this.renderCoordinates(this.props.pixelCoordinate.get("data"))}
+            </div>
+        </div>
+    );
+}
+...
+```
+
+Save your work and refresh your browser. Now when you mouse over points on the storm track you should see an indicator of the data at that point.
