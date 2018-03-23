@@ -56,6 +56,7 @@ export class LayerControlContainer extends LayerControlContainerCore {
             <span className={styles.layerControlIconRow}>
                 <Manager style={{ display: "inline-block" }}>
                     <ClickAwayListener
+                        wrap={true}
                         onClickAway={() => {
                             if (this.isChangingPosition) {
                                 this.toggleChangingPosition();
@@ -97,6 +98,7 @@ export class LayerControlContainer extends LayerControlContainerCore {
                         </Popper>
                     </ClickAwayListener>
                     <ClickAwayListener
+                        wrap={true}
                         onClickAway={() => {
                             if (this.isChangingOpacity) {
                                 this.toggleChangingOpacity();
