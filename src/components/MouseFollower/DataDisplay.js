@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import moment from "moment";
 import Typography from "material-ui/Typography";
 import Immutable from "immutable";
@@ -66,4 +65,4 @@ DataDisplay.propTypes = {
     data: PropTypes.object.isRequired
 };
 
-export default connect()(DataDisplay);
+export default DataDisplay;

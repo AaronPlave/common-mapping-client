@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Immutable from "immutable";
 import MiscUtil from "_core/utils/MiscUtil";
-import {
-    DrawingTooltip,
-    MouseCoordinates as MouseCoordinatesCore
-} from "_core/components/MouseFollower";
+import { DrawingTooltip, MouseCoordinates } from "_core/components/MouseFollower";
 import { DataDisplayContainer } from "components/MouseFollower";
 import styles from "_core/components/MouseFollower/MouseFollowerContainer.scss";
 import displayStyles from "_core/styles/display.scss";
@@ -43,7 +40,7 @@ export class MouseFollowerContainer extends Component {
         if (data.size > 0) {
             return "";
         } else {
-            return <MouseCoordinatesCore />;
+            return <MouseCoordinates />;
         }
     }
 
@@ -59,7 +56,6 @@ export class MouseFollowerContainer extends Component {
         let drawOrMeasure =
             this.props.drawing.get("isDrawingEnabled") ||
             this.props.measuring.get("isMeasuringEnabled");
-        let dataAvailable = this.props.pixelCoordinate.get("data").size > 0;
 
         let containerClasses = MiscUtil.generateStringFromSet({
             [styles.mouseFollowerContainer]: true,

@@ -7,15 +7,12 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import MiscUtil from "_core/utils/MiscUtil";
 import { DataDisplay } from "components/MouseFollower";
-import styles from "components/MouseFollower/DataDisplayContainer.scss";
 
 export class DataDisplayContainer extends Component {
     render() {
         let classes = MiscUtil.generateStringFromSet({
-            [styles.root]: true,
             [this.props.className]: typeof this.props.className !== "undefined"
         });
         return (
@@ -33,4 +30,4 @@ DataDisplayContainer.propTypes = {
     className: PropTypes.string
 };
 
-export default connect()(DataDisplayContainer);
+export default DataDisplayContainer;
