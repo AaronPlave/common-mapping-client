@@ -73,9 +73,9 @@ export default class MapWrapperCesium extends MapWrapperCesiumCore {
                 let mapLayers = this.getMapLayers(layer.get("handleAs"));
                 let mapLayer = this.findLayerInMapLayers(mapLayers, layer);
                 if (mapLayer) {
-                    mapLayer._layerTime = moment(this.mapDate).format(layer.get("timeFormat"));
+                    this.setLayerRefInfo(layer, mapLayer);
 
-                    let date = moment(mapLayer._layerTime, layer.get("timeFormat")).startOf("d");
+                    let date = moment(this.mapDate).startOf("d");
                     let nextDate = moment(date).add(1, "d");
 
                     let features = mapLayer.entities.values;
