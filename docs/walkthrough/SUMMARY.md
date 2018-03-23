@@ -23,6 +23,7 @@
   * [Adding interactivity](adding-hurricane-track-vector-layer/adding-interactivity.md)
     * [Modifying the mouse interactions](adding-hurricane-track-vector-layer/adding-interactivity/modifying-the-hover-interaction.md)
     * [Adding a hover display component](adding-hurricane-track-vector-layer/adding-interactivity/adding-a-hover-display-component.md)
+    * [Highlighting points for the current date](adding-hurricane-track-vector-layer/adding-interactivity/highlighting-points-for-the-current-date.md)
 * [Extending and Replacing Core Components](extending-and-replacing-core-components/README.md)
   * [Customizing help modal content](extending-and-replacing-core-components/customizing-help-modal-content.md)
   * [Adding "fly to" layer functionality](extending-and-replacing-core-components/adding-fly-to-layer-functionality.md)
