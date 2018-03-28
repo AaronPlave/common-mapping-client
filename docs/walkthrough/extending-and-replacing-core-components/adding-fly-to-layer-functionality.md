@@ -14,7 +14,7 @@ export const ZOOM_TO_LAYER = "ZOOM_TO_LAYER";
 
 Now we'll create the action function that will take a reference to a layer and emit an action object describing the action of zooming to that layer.
 
-Create and edit `src/actions/mapActions.js`
+Create and edit `src/actions/mapActions.js` 
 
 ```js
 import * as types from "constants/actionTypes";
@@ -32,7 +32,15 @@ Reducers receive the current state of the application and an action and return a
 
 When overriding the mouse interactions for the hurricane track, we already created the files we will be modifying. So make sure you have gone through that section prior to this.
 
-Edit `src/reducers/map.js` and add the following case to the switch statement
+Edit `src/reducers/map.js` 
+
+Add this import to retrieve the new action type string
+
+```js
+import * as actionTypes from "constants/actionTypes";
+```
+
+Now add the following case to the switch statement to handle that action type
 
 ```js
 case actionTypes.ZOOM_TO_LAYER:
