@@ -4,7 +4,40 @@ Now let's take a look at adding a more complicated feature. Let's add a "zoom-to
 
 ## Creating a zoom-to action
 
+In Redux, an action is a function that emits an object that contains information on what to update in state. So let's begin by defining a string that will distinguish this new action object from all the others.
+
+Create and edit `src/constants/actionTypes.js`
+
+```js
+export const ZOOM_TO_LAYER = "ZOOM_TO_LAYER";
+```
+
+Now we'll create the action function that will take a reference to a layer and emit an action object describing the action of zooming to that layer.
+
+Create and edit `src/actions/mapActions.js`
+
+```js
+import * as types from "constants/actionTypes";
+
+export function zoomToLayer(layer) {
+    return { type: types.ZOOM_TO_LAYER, layer };
+}
+```
+
+Now that we have an action object that contains all the information we need to execute the action, let's add a handler for that action in our reducers.
+
 ## Handling the zoom-to action with reducers
+
+Reducers receive the current state of the application and an action and return a new state based on the change described by that action. In CMC, we use the reducer `switch` statements in the reducers to filter through actions and perform the actual state changes in our `*Reducer.js` classes.
+
+When overriding the mouse interactions for the hurricane track, we already created the files we will be modifying. So make sure you have gone through that section prior to this.
+
+Edit `src/reducers/map.js` and add the following case to the switch statement
+
+```js
+case actionTypes.ZOOM_TO_LAYER:
+    return opt_reducer.zoomToLayer(state, action);
+```
 
 ## Adding zoom-to functionality to Openlayers
 
@@ -12,13 +45,16 @@ Now let's take a look at adding a more complicated feature. Let's add a "zoom-to
 
 ## Extending Layer Controls
 
-Let's start by adding an icon button to our layer control component so that we have a way of using the zoom-to functionality we'll be implementing. Since the layer controls component is actually rendered inside of the layer menu component we'll have to work with the layer menu as well. 
+Let's start by adding an icon button to our layer control component so that we have a way of using the zoom-to functionality we'll be implementing. Since the layer controls component is actually rendered inside of the layer menu component we'll have to work with the layer menu as well.
 
-First we'll copy over the contents of `_core/components/LayerMenu/LayerMenuContainer.js` into `components/LayerMenu/LayerMenuContainer.js`. We don't really need to extend the core component here since the only method it implements is `render` and that's the only function we'll need to tweak (sort of). Now we'll change the import of `LayerControlContainer` to use a new one we'll make, so go ahead and change:
+First we'll copy over the contents of `_core/components/LayerMenu/LayerMenuContainer.js` into `components/LayerMenu/LayerMenuContainer.js`. We don't really need to extend the core component here since the only method it implements is `render` and that's the only function we'll need to tweak \(sort of\). Now we'll change the import of `LayerControlContainer` to use a new one we'll make, so go ahead and change:
+
 ```JS
 import { LayerControlContainer } from "_core/components/LayerMenu";
 ```
+
 to
+
 ```JS
 import { LayerControlContainer } from "components/LayerMenu";
 ```
@@ -30,10 +66,13 @@ import { LayerControlContainer as LayerControlContainerCore } from "_core/compon
 ```
 
 and change the class definition from:
+
 ```JS
 export class LayerControlContainer extends Component {
 ```
+
 to
+
 ```JS
 export class LayerControlContainer extends LayerControlContainerCore {
 ```
@@ -47,7 +86,7 @@ import TargetIcon from "material-ui-icons/FilterCenterFocus";
 export class LayerControlContainer extends LayerControlContainerCore {
 ...
     zoomToLayer() {}
-    
+
     renderIconRow() {
         let positionPopoverClasses = MiscUtil.generateStringFromSet({
             [styles.popover]: true,
@@ -162,5 +201,8 @@ export class LayerControlContainer extends LayerControlContainerCore {
             </span>
         );
     }
-}    
+}
 ```
+
+
+
