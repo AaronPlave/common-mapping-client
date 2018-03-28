@@ -32,7 +32,6 @@ This is our starting point for overriding the CMC Core MapReducer functions. Now
 Create and edit `src/reducers/map.js`
 
 ```js
-import * as actionTypes from "constants/actionTypes";
 import { mapState } from "reducers/models/map";
 import mapCore from "_core/reducers/map";
 import MapReducer from "reducers/reducerFunctions/MapReducer";
