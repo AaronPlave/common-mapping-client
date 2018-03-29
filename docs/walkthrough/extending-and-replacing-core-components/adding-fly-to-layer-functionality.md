@@ -47,13 +47,70 @@ case actionTypes.ZOOM_TO_LAYER:
     return opt_reducer.zoomToLayer(state, action);
 ```
 
+Now in the `src/reducers/reducerFunctions/MapReducer.js` file we created previously we'll go ahead and add our reducer function:
+```js
+    static zoomToLayer(state, action) {
+        let alerts = state.get("alerts");
+
+        // resolve layer from id if necessary
+        let actionLayer = action.layer;
+        if (typeof actionLayer === "string") {
+            actionLayer = this.findLayerById(state, actionLayer);
+            if (typeof actionLayer === "undefined") {
+                alerts = alerts.push(
+                    alert.merge({
+                        title: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.title,
+                        body: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.formatString
+                            .replace("{LAYER}", actionLayer)
+                            .replace("{MAP}", "2D & 3D"),
+                        severity: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.severity,
+                        time: new Date()
+                    })
+                );
+                return state.set("alerts", alerts);
+            }
+        }
+
+        state.get("maps").map(map => {
+            if (!map.zoomToLayer(actionLayer)) {
+                let contextStr = map.is3D ? "3D" : "2D";
+                alerts = alerts.push(
+                    alert.merge({
+                        title: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.title,
+                        body: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.formatString
+                            .replace("{LAYER}", actionLayer)
+                            .replace("{MAP}", contextStr),
+                        severity: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.severity,
+                        time: new Date()
+                    })
+                );
+            }
+        });
+
+        return state.set("alerts", alerts);
+    }
+```
+Since we want to alert the user if this action fails we add an alert to state when we can't find the layer specified in the action or when one or both of the `zoomToLayer` calls fail. We can copy over a template alert object from `src/_core/constants/appStrings.js` and add it to our own `src/constants/appStrings.js` file:
+
+```JS
+export const ALERTS = {
+    ZOOM_TO_LAYER_FAILED: {
+        title: "Zoom to Layer Failed",
+        formatString: "Unable to zoom to layer {LAYER} for the {MAP} map.",
+        severity: 3
+    }
+};
+```
+
+
 ## Adding zoom-to functionality to Openlayers
+
 
 ## Adding zoom-to functionality to Cesium
 
 ## Extending Layer Controls
 
-Let's start by adding an icon button to our layer control component so that we have a way of using the zoom-to functionality we'll be implementing. Since the layer controls component is actually rendered inside of the layer menu component we'll have to work with the layer menu as well.
+Now that we have our underlying zoom-to functionality implemented we'll need to create a way to actually use this functionality through the UI. We'll do this by adding an icon button to our layer control component. Since the layer controls component is actually rendered inside of the layer menu component we'll have to work with the layer menu as well.
 
 First we'll copy over the contents of `_core/components/LayerMenu/LayerMenuContainer.js` into `components/LayerMenu/LayerMenuContainer.js`. We don't really need to extend the core component here since the only method it implements is `render` and that's the only function we'll need to tweak \(sort of\). Now we'll change the import of `LayerControlContainer` to use a new one we'll make, so go ahead and change:
 
