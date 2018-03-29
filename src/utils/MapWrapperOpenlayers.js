@@ -104,50 +104,8 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
                     layer.get("id")
                 );
                 if (mapLayer) {
-                    // update the layer
                     this.setLayerRefInfo(layer, mapLayer);
-
-                    let date = moment(mapLayer.get("_layerTime"), layer.get("timeFormat")).startOf(
-                        "d"
-                    );
-                    let nextDate = moment(date).add(1, "d");
-                    mapLayer.getSource().forEachFeature(feature => {
-                        let featureTime = moment(feature.get("dtg"), layer.get("timeFormat"));
-                        if (featureTime.isBetween(date, nextDate, null, "[)")) {
-                            let category = this.mapUtil.getStormCategory(
-                                parseInt(feature.get("intensity"))
-                            );
-                            feature.setStyle([
-                                new Ol_Style({
-                                    image: new Ol_Style_Circle({
-                                        fill: new Ol_Style_Fill({ color: "#000" }),
-                                        radius: 10
-                                    }),
-                                    zIndex: 2
-                                }),
-                                new Ol_Style({
-                                    image: new Ol_Style_Circle({
-                                        fill: new Ol_Style_Fill({ color: "#fff" }),
-                                        radius: 9.25
-                                    }),
-                                    zIndex: 2
-                                }),
-                                new Ol_Style({
-                                    image: new Ol_Style_Circle({
-                                        fill: new Ol_Style_Fill({ color: category.color }),
-                                        stroke: new Ol_Style_Stroke({
-                                            color: "#000",
-                                            width: 1.25
-                                        }),
-                                        radius: 7.5
-                                    }),
-                                    zIndex: 2
-                                })
-                            ]);
-                        } else {
-                            feature.setStyle(null);
-                        }
-                    });
+                    mapLayer.changed();
                 }
 
                 return true;
@@ -257,18 +215,52 @@ export default class MapWrapperOpenlayers extends MapWrapperOpenlayersCore {
         return (feature, resolution) => {
             let category = this.mapUtil.getStormCategory(parseInt(feature.get("intensity")));
 
-            let pointStyle = new Ol_Style_Circle({
-                fill: new Ol_Style_Fill({ color: category.color }),
-                stroke: new Ol_Style_Stroke({
-                    color: "#000",
-                    width: 1.25
-                }),
-                radius: 6
-            });
+            let date = moment(this.mapDate).startOf("d");
+            let nextDate = moment(date).add(1, "d");
+            let featureTime = moment(feature.get("dtg"), layer.get("timeFormat"));
 
-            return new Ol_Style({
-                image: pointStyle
-            });
+            if (featureTime.isBetween(date, nextDate, null, "[)")) {
+                return [
+                    new Ol_Style({
+                        image: new Ol_Style_Circle({
+                            fill: new Ol_Style_Fill({ color: "#000" }),
+                            radius: 10
+                        }),
+                        zIndex: 2
+                    }),
+                    new Ol_Style({
+                        image: new Ol_Style_Circle({
+                            fill: new Ol_Style_Fill({ color: "#fff" }),
+                            radius: 9.25
+                        }),
+                        zIndex: 2
+                    }),
+                    new Ol_Style({
+                        image: new Ol_Style_Circle({
+                            fill: new Ol_Style_Fill({ color: category.color }),
+                            stroke: new Ol_Style_Stroke({
+                                color: "#000",
+                                width: 1.25
+                            }),
+                            radius: 7.5
+                        }),
+                        zIndex: 2
+                    })
+                ];
+            } else {
+                let pointStyle = new Ol_Style_Circle({
+                    fill: new Ol_Style_Fill({ color: category.color }),
+                    stroke: new Ol_Style_Stroke({
+                        color: "#000",
+                        width: 1.25
+                    }),
+                    radius: 6
+                });
+
+                return new Ol_Style({
+                    image: pointStyle
+                });
+            }
         };
     }
 

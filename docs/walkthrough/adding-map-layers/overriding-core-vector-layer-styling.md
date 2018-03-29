@@ -10,7 +10,3 @@
 
 - override createVectorLayer
 - override createVectorKMLSource
-
-## Decluttering labels
-
-- Rough approach is to declutter labels based on feature size. Could do much better than this but this is just to give you an idea of where to get started. 
