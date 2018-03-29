@@ -17,20 +17,20 @@ import MapReducerCore from "_core/reducers/reducerFunctions/MapReducer";
 
 export default class MapReducer extends MapReducerCore {
     static zoomToLayer(state, action) {
+        let alerts = state.get("alerts");
+
         // resolve layer from id if necessary
         let actionLayer = action.layer;
         if (typeof actionLayer === "string") {
             actionLayer = this.findLayerById(state, actionLayer);
             if (typeof actionLayer === "undefined") {
-                let alerts = state.get("alerts");
                 alerts = alerts.push(
                     alert.merge({
-                        title: appStrings.ALERTS.ZOOM_TO_LAYER_FAIILED.title,
-                        body: appStrings.ALERTS.ZOOM_TO_LAYER_FAIILED.formatString.replace(
-                            "{LAYER}",
-                            actionLayer
-                        ),
-                        severity: appStrings.ALERTS.ZOOM_TO_LAYER_FAIILED.severity,
+                        title: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.title,
+                        body: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.formatString
+                            .replace("{LAYER}", actionLayer)
+                            .replace("{MAP}", "2D & 3D"),
+                        severity: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.severity,
                         time: new Date()
                     })
                 );
@@ -39,10 +39,22 @@ export default class MapReducer extends MapReducerCore {
         }
 
         state.get("maps").map(map => {
-            map.zoomToLayer(actionLayer);
+            if (!map.zoomToLayer(actionLayer)) {
+                let contextStr = map.is3D ? "3D" : "2D";
+                alerts = alerts.push(
+                    alert.merge({
+                        title: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.title,
+                        body: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.formatString
+                            .replace("{LAYER}", actionLayer)
+                            .replace("{MAP}", contextStr),
+                        severity: appStrings.ALERTS.ZOOM_TO_LAYER_FAILED.severity,
+                        time: new Date()
+                    })
+                );
+            }
         });
 
-        return state;
+        return state.set("alerts", alerts);
     }
 
     static pixelHover(state, action) {

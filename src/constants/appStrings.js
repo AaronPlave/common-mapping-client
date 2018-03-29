@@ -1,7 +1,7 @@
 export const ALERTS = {
     ZOOM_TO_LAYER_FAILED: {
         title: "Zoom to Layer Failed",
-        formatString: "Unable to find layer {LAYER}.",
+        formatString: "Unable to zoom to layer {LAYER} for the {MAP} map.",
         severity: 3
     }
 };
