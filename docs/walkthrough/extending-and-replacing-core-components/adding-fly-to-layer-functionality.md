@@ -102,11 +102,74 @@ export const ALERTS = {
 };
 ```
 
+Back in `src/reducers/reducerFunctions/MapReducer.js` we'll need to import our new alert object by importing appStrings.
+
+```JS
+import * as appStrings from "constants/appStrings";
+```
 
 ## Adding zoom-to functionality to Openlayers
 
+Now that we have our action and reducer function in place we can go ahead and implement the actual zoom-to functionality in our map wrappers. We'll start off with Openlayers and add this function to `src/utils/MapWrapperOpenlayers.js`. 
+
+```js
+    zoomToLayer(layer) {
+        try {
+            let mapLayers = this.map.getLayers().getArray();
+            let mapLayer = this.miscUtil.findObjectInArray(mapLayers, "_layerId", layer.get("id"));
+            if (mapLayer) {
+                let mapSize = this.map.getSize() || [];
+                let extents =
+                    typeof mapLayer.getSource().getExtent === "function"
+                        ? mapLayer.getSource().getExtent()
+                        : Ol_Proj.transformExtent(
+                              layer.getIn(["wmtsOptions", "extents"]).toJS(),
+                              layer.getIn(["wmtsOptions", "projection"]),
+                              this.map
+                                  .getView()
+                                  .getProjection()
+                                  .getCode()
+                          );
+
+                this.map.getView().fit(extents, {
+                    size: mapSize,
+                    duration: 1000,
+                    padding: [100, 100, 100, 100],
+                    constrainResolution: false
+                });
+                return true;
+            }
+            return false;
+        } catch (err) {
+            console.warn("Error in MapWrapperOpenlayers.zoomToLayer:", err);
+            return false;
+        }
+    }
+```
 
 ## Adding zoom-to functionality to Cesium
+
+Now we'll add a similar function in our Cesium map wrapper in `src/utils/MapWrapperCesium.js`.
+
+```js
+    zoomToLayer(layer) {
+        try {
+            let mapLayers = this.getMapLayers(layer.get("handleAs"));
+            let mapLayer = this.findLayerInMapLayers(mapLayers, layer);
+            if (mapLayer) {
+                this.map.flyTo(mapLayer, {
+                    duration: 1,
+                    offset: new this.cesium.HeadingPitchRange(0, -90, 0)
+                });
+                return true;
+            }
+            return false;
+        } catch (err) {
+            console.warn("Error in MapWrapperCesiumExtended.zoomToLayer:", err);
+            return false;
+        }
+    }
+```
 
 ## Extending Layer Controls
 
@@ -142,15 +205,18 @@ to
 export class LayerControlContainer extends LayerControlContainerCore {
 ```
 
-Now we'll override the function that renders the row of icons inside the layer control in order to add a zoom-to button. We'll want to copy the original `renderIconRow` function and add our button. We'll also need to import an icon to use for this icon button.
+Now we'll override the function that renders the row of icons inside the layer control in order to add a zoom-to button. We'll want to copy the original `renderIconRow` function and add our button. We'll also need to import an icon to use for this icon button as well as our new map actions that contain our `zoomToLayer` action. We'll need to add these mapActions in `mapDispatchToProps` in order to dispatch our new map action.
 
 ```JSX
 ...
 import TargetIcon from "material-ui-icons/FilterCenterFocus";
+import * as mapActionsDemo from "actions/mapActions";
 ...
 export class LayerControlContainer extends LayerControlContainerCore {
 ...
-    zoomToLayer() {}
+    zoomToLayer() { 
+        this.props.mapActionsDemo.zoomToLayer(this.props.layer.get("id"));
+    }
 
     renderIconRow() {
         let positionPopoverClasses = MiscUtil.generateStringFromSet({
@@ -267,7 +333,27 @@ export class LayerControlContainer extends LayerControlContainerCore {
         );
     }
 }
+
+LayerControlContainer.propTypes = {
+    mapActions: PropTypes.object.isRequired,
+    mapActionsDemo: PropTypes.object.isRequired,
+    layer: PropTypes.object.isRequired,
+    activeNum: PropTypes.number.isRequired,
+    palette: PropTypes.object,
+    className: PropTypes.string
+};
+
+function mapDispatchToProps(dispatch) {
+    return {
+        mapActions: bindActionCreators(mapActions, dispatch),
+        mapActionsDemo: bindActionCreators(mapActionsDemo, dispatch)
+    }
+}
+...
 ```
+
+And that's it! Refresh the app and click on the zoom to icon for one of the data layers. If everything is properly wired up you should see the map zoom to fit the extent of that layer.
+
 
 
 
