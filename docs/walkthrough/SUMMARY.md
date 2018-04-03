@@ -4,8 +4,8 @@
 
 * [Introduction](README.md)
 * [Getting Started](getting-started/README.md)
-  * [Changing the app title](getting-started/changing-the-app-title.md)
   * [Adding a new app container](getting-started/adding-a-new-app-container.md)
+  * [Changing the app title](getting-started/changing-the-app-title.md)
   * [Changing the app color theme](getting-started/changing-the-app-color-theme.md)
   * [Changing the map projection](getting-started/changing-the-projection.md)
 * [Adding WMTS Image Layers](adding-map-layers/README.md)
