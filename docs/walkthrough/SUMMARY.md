@@ -11,7 +11,6 @@
 * [Adding WMTS Image Layers](adding-map-layers/README.md)
   * [Copying over default data](adding-map-layers/copying-over-default-data.md)
   * [Modifying layer configurations](adding-map-layers/adding-layer-configurations.md)
-  * [Overriding core vector layer styling](adding-map-layers/overriding-core-vector-layer-styling.md)
   * [Adding layer metadata](adding-map-layers/adding-layer-metadata.md)
 * [Adding a Hurricane Track Vector Layer](adding-hurricane-track-vector-layer.md)
   * [Finding the Data](adding-hurricane-track-vector-layer/finding-the-data.md)
