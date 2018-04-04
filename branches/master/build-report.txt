@@ -1,7 +1,7 @@
 Generating minified bundle for production via Webpack. This will take a moment...
 Webpack stats: Hash: aa589203abb4c4d381a1
 Version: webpack 3.10.0
-Time: 78481ms
+Time: 72450ms
                                             Asset       Size  Chunks                    Chunk Names
                 img/surface_precipitation_day.png     843 kB          [emitted]  [big]  
                    6f3d9cbd8ae1816cad9d.worker.js    8.86 kB          [emitted]         
