@@ -6,4 +6,4 @@ Part of a vector layer's appeal is that the data that is being rendered is avail
 * Clicking on a point will switch the map to the corresponding date
 * Highlight the points corresponding to the currently active date
 
-Let's get started
+Let's get started.
