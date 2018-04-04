@@ -1,6 +1,6 @@
 # Modifying Layer Configurations - Part 2
 
-As we saw in \[Modifying layer configurations\]\(INSERT LINK HERE\) for WMTS Image layers, all non-default layer configurations primarily reside in `layers.json` . So let's go ahead and add a new layer entry for this storm track.
+As we saw in [Modifying layer configurations](../../adding-map-layers/adding-layer-configurations.md) for WMTS Image layers, all non-default layer configurations primarily reside in `layers.json` . So let's go ahead and add a new layer entry for this storm track.
 
 In `layers.json` , add the following entry:
 
