@@ -1,6 +1,6 @@
 # Modifying the Mouse Interactions
 
-CMC by default implements a map hover and click workflow for Openlayers and Cesium. This begins in `src/_core/Components/Map/MapContainer2D.js` and `src/_core/Components/Map/MapContainer3D.js` where we use the MapWrapper class to attach a mouse move and click listener to the Openlayers/Cesium map. That callback sends the event information through the Redux reducers and back out the components. This is how the cursor position indicator receives it's state information. For our purposes then, we will start by extra fields to the state model, and then overriding the `MapReducer` that handles the mouse events.
+CMC by default implements a map hover and click workflow for Openlayers and Cesium. This begins in `src/_core/Components/Map/MapContainer2D.js` and `src/_core/Components/Map/MapContainer3D.js` where we use the MapWrapper class to attach a mouse move and click listener to the Openlayers/Cesium map. That callback sends the event information through the Redux reducers and back out to the components. This is how the cursor position indicator receives it's state information. For our purposes then, we will start by extra fields to the state model, and then overriding the `MapReducer` that handles the mouse events.
 
 ## Boilerplate
 
