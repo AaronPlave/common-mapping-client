@@ -69,7 +69,7 @@ Now our Redux store reducer will be using our new reducer function which include
 
 ## Adding Pieces of State
 
-As mentioned above, CMC Core already tracks hover and click information in state. After looking `src/_core/models/map.js` you may find `mapState.view.pixelHoverCoordinate` and `mapState.view.pixelClickCoordinate`, that will be our target for adding additional pieces of information for these interactions.
+As mentioned above, CMC Core already tracks hover and click information in state. After looking in `src/_core/models/map.js` you will find `mapState.view.pixelHoverCoordinate` and `mapState.view.pixelClickCoordinate`, that will be our target for adding additional pieces of information for these interactions.
 
 Edit `src/reducers/models/map.js` and modify the exported `mapState`
 
