@@ -80,14 +80,17 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(HelpContainer);
 ```
 
+Next, in our newly created index.js file under `src/components/Help/` we will modify the component export to reflect the path of our custom Help component.
+
+```JS
+export { default as HelpContainer } from "components/App/HelpContainer.js";
+```
+
+
 ## Changing the import in App Container
 
-Finally, we need to import our new help component into our App container:
+Finally, we will need to modify the import of the Help component in AppContainer to use our new component:
 
 `import { HelpContainer } from "components/Help";`
 
-and remove the import of the Core Help component:
-
-~~import { HelpContainer } from "_core/components/Help";~~
-
-If you save your work and reload the page you should now see  our new about page content displaying in the about subpage of the Help component.
+If you save your work and reload the page you should now see our new about page content displaying in the about subpage of the Help component.
