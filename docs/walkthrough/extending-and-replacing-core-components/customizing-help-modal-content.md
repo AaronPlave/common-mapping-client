@@ -83,7 +83,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(HelpContainer);
 Next, in our newly created index.js file under `src/components/Help/` we will modify the component export to reflect the path of our custom Help component.
 
 ```JS
-export { default as HelpContainer } from "components/App/HelpContainer.js";
+export { default as HelpContainer } from "components/Help/HelpContainer.js";
 ```
 
 
