@@ -92,7 +92,7 @@ Notice that we are using the same object key structure as the CMC Core model and
 
 ## Adding MapWrapper Functions
 
-Now that we have an array in state, we'll want to fill it with something useful. Now we'll add a functions to our MapWrapper classes for retrieving data at a point.
+Now that we have an array in state we'll want to fill it with something useful so we'll add functions to our MapWrapper classes for retrieving data at a point.
 
 Because we know that we'll be calling this function from a mouse event, we can expect to be passed a screen space location ([x,y] pixel coordinate) from which to pull the related data. That's handy because both Cesium and Openlayers have built-in functions for retrieving vector data at a pixel. We'll begin with Openlayers.
 
