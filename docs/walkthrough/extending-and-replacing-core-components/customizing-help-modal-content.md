@@ -91,6 +91,8 @@ export { default as HelpContainer } from "components/Help/HelpContainer.js";
 
 Finally, we will need to modify the import of the Help component in AppContainer to use our new component:
 
-`import { HelpContainer } from "components/Help";`
+```JS
+import { HelpContainer } from "components/Help";
+```
 
 If you save your work and reload the page you should now see our new about page content displaying in the about subpage of the Help component.
