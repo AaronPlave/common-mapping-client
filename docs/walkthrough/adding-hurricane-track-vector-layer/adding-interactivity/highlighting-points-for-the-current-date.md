@@ -26,6 +26,9 @@ As we have already seen, we can use a function to style each point in the track 
 Edit `src/utils/MapWrapperOpenlayers.js`
 
 ```js
+...
+import moment from "moment";
+...
 createVectorLayerStyleStorm(layer) {
     return (feature, resolution) => {
         let category = this.mapUtil.getStormCategory(parseInt(feature.get("intensity")));
