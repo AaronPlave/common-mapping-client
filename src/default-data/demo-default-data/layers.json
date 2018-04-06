@@ -23,7 +23,7 @@
             "title": "Sea Surface Temperature",
             "type": "data",
             "handleAs": "GIBS_raster",
-            "min": 2.0,
+            "min": 0.0,
             "max": 32.0,
             "units": "˚C",
             "wmtsOptions": {
@@ -38,8 +38,8 @@
                 "handleAs": "json"
             },
             "palette": {
-                "name": "GHRSST_L4_Sea_Surface_Temperature",
-                "handleAs": "json-relative"
+                "name": "GIBS_SST",
+                "handleAs": "json-fixed"
             },
             "thumbnailImage": "img/GHRSST_L4_G1SST_Sea_Surface_Temperature.png"
         },
@@ -93,7 +93,7 @@
             },
             "palette": {
                 "name": "AMSR2_Surface_Precipitation_Rate",
-                "handleAs": "json-relative"
+                "handleAs": "json-fixed"
             },
             "thumbnailImage": "img/surface_precipitation_day.png"
         },
@@ -126,7 +126,7 @@
             },
             "palette": {
                 "name": "AMSR2_Surface_Precipitation_Rate",
-                "handleAs": "json-relative"
+                "handleAs": "json-fixed"
             },
             "thumbnailImage": "img/surface_precipitation_night.png"
         },
